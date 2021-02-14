@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pPandoc_tuto</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; } /* Alert */
+    code span.an { color: #008000; } /* Annotation */
+    code span.at { } /* Attribute */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #0000ff; } /* ControlFlow */
+    code span.ch { color: #008080; } /* Char */
+    code span.cn { } /* Constant */
+    code span.co { color: #008000; } /* Comment */
+    code span.cv { color: #008000; } /* CommentVar */
+    code span.do { color: #008000; } /* Documentation */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.im { } /* Import */
+    code span.in { color: #008000; } /* Information */
+    code span.kw { color: #0000ff; } /* Keyword */
+    code span.op { } /* Operator */
+    code span.ot { color: #ff4000; } /* Other */
+    code span.pp { color: #ff4000; } /* Preprocessor */
+    code span.sc { color: #008080; } /* SpecialChar */
+    code span.ss { color: #008080; } /* SpecialString */
+    code span.st { color: #008080; } /* String */
+    code span.va { } /* Variable */
+    code span.vs { color: #008080; } /* VerbatimString */
+    code span.wa { color: #008000; font-weight: bold; } /* Warning */
+  </style>
+  <style>
+  h1,h2 {
+      display: block;
+      color: #37474f;
+      font-weight: bold;
+  }
+  h1 {
+      font-size: 1.8em;
+      margin: 1em 0 0.2em 0;
+  }
+  hr {
+      margin: 0 0 2em 0;
+      color: #37474f; }
+  h2 {
+      font-size: 1.2em;
+      margin: 1em 0 0.8em 0;
+  }
+  blockquote {
+      border-left: 0.5em solid #64285e;
+      background-color: lightgrey;
+      font-style: italic;
+      padding-left: 1em;
+  }
+  img {
+      margin: 1em auto 0.2em auto;
+      display: block;
+  }
+  figcaption {
+      text-align: center;
+      font-size: small;
+      font-style: italic;
+      margin-bottom: 1em;
+  }
+  table {
+      margin: 0em auto 2em auto;
+  }
+  code {
+      font-size: 1.2em;
+  }
+  math, .MJX-TEX {
+      font-weight: bold;
+      font-size: 2em;
+      color: darkgreen;
+  }
+  </style>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#ecset-helyett-használja-a-pandocs-markdown-t">Ecset helyett használja a <em>Pandoc’s Markdown</em>-t!</a>
+<ul>
+<li><a href="#bevezetés">Bevezetés</a></li>
+<li><a href="#a-pandoc-telepítése">A <em>pandoc</em> telepítése</a></li>
+<li><a href="#a-leggyakrabban-használt-jelölések">A leggyakrabban használt jelölések</a></li>
+<li><a href="#attribútumok-linkek-képek">Attribútumok, linkek, képek</a></li>
+<li><a href="#konvertálás">Konvertálás</a></li>
+<li><a href="#markdown-ból-html-be-és-epub-ba"><em>Markdown</em>-ból <em>html</em>-be és <em>epub</em>-ba</a></li>
+<li><a href="#táblázatok">Táblázatok</a></li>
+<li><a href="#matematikai-kifejezések">Matematikai kifejezések</a></li>
+<li><a href="#függelék">Függelék</a></li>
+</ul></li>
+</ul>
+</nav>
+<p><sub><em>Koós Antal, 2021. február 14., v1.0, https://eutlantis.k2os.hu/szoftver</em></sub></p>
+<h1 id="ecset-helyett-használja-a-pandocs-markdown-t">Ecset helyett használja a <em>Pandoc’s Markdown</em>-t!</h1>
+<hr />
+<h2 id="bevezetés">Bevezetés</h2>
+<p>Amióta a legutolsó könyvemet teljes egészében a <em>Pandoc’s Markdown</em> nyelven írtam, rászoktam hogy minden írásomat (mint például ezt), de még az apró-cseprő feljegyzéseimet is ezzel a jelölőnyelvvel (<em>markup language</em>) rögzítem. Sokféle jelölőnyelv létezik, például ilyenek a <em>html, xml, svg, LaTeX</em>, amelyek közül talán a legelső a legismertebb, mivel az internet böngészésekor elsősorban ilyen formátumú dokumentumokkal találkozunk. Ha a böngészőben megnézzük egy oldal forrását (<em>View page source</em>), akkor rémisztő dolgokkal szembesülünk; még ha el is tekintünk a beillesztett programkódoktól (<em>JavaScript</em>), akkor is ott marad egy nagy csomó ún. címke (<em>tag</em>), mint például a <code>&lt;h1&gt;, &lt;div&gt;, &lt;p&gt;, &lt;span&gt;, &lt;img&gt;, &lt;a&gt;, &lt;code&gt;, &lt;td&gt;, &lt;ul&gt;, &lt;li&gt;</code>, és amelyek még olyan további jellemzőkkel is bírhatnak, mint például <code>class, id, alt, src, href, title</code>. Szerintem csak kevesen vannak azok, akik, nem földi halandók lévén, műveiket (könyvet, szakdolgozatot) képesek ily módon, közvetlenül <em>html</em>-ben rögzíteni, mert a lényegi mondanivalóhoz nem tartozó formai elemek láttán megbicsaklik a gondolat.<br />
+Természetesen e helyett választhatjuk valamelyik irodai programcsomagot (LibreOffice, MS Office), hiszen rendkívül sok funkcióval rendelkeznek, és az általuk készített dokumentumot számtalan más formátumba exportálhatjuk, de egyrészt, sokunknak még az ikonokra kattintgatás vagy a stíluselemeknek gyorsító billentyűkkel történő kiválasztása is bosszantóan körülményesnek bizonyul (persze megfelelő stíluslapok és szerkesztési technika alkalmazásával ezen sokat lehet javítani), másrészt, nem mindig tudunk teljes kontrollt gyakorolni a dokumentum szerkezetét illetően (ami persze nem is mindig szükséges).<br />
+Jó lenne, ha a két véglet között lenne valamilyen köztes eljárás.</p>
+<p>Hasonló gondolatok foglalkoztathatták <em>John Gruber</em>-t és <em>Aaron Swartz</em>-ot, amikor 2004-ben megalkották a <em>Markdown</em> jelölőnyelvet, amelynek segítségével egy egyszerű szövegszerkesztőben (<em>plain text editor</em>, például: Kate, Gedit, Geany, Notepad++, vim), amilyeneket rendszerint programkódok írására is használunk, bizonyos jelek és jelcsoportok megfelelő elhelyezésével formázási utasításokat helyezhetünk el a szövegben, amelyből azután egy konvertáló programmal <em>html</em> vagy más formátumú fájlt állíthatunk elő. Miért jobb ez, mint közvetlenül <em>html</em> címkéket és az ahhoz tartozó tulajdonságokat beilleszteni a szövegbe? A lényeg a megvalósítás részleteiben rejlik: a jelölésmód úgy került kialakításra, hogy azt alkalmazva a szöveg nem válik “olvashatatlanul” feldarabolttá, és ráadásul a jelek beszúrása is csak minimális plusz munkával jár. A szerkesztőprogramban ugyan nem látjuk a formázott szöveget “élő valójában”, de egyrészt egy konvertáló programmal hipp-hopp előállíthatjuk a <em>html</em> kódot, aminek a megjelenítését egy böngészőben azonnal ellenőrizhetjük, másrészt, ezek az “egyszerű” szerkesztőprogramok már nem is olyan egyszerűek, hiszen mindenféle programnyelvhez, amibe a jelölőnyelvek is beleértendők, szintaxis szerinti színezést tudnak rendelni, ami által a <em>Markdown</em>-ban írt szövegünk jól áttekinthetővé válik, sőt olvashatóbb lesz a jelölőnyelvet nem használónál.</p>
+<p>A <em>Markdown</em> jelölőnyelvnek a későbbiekben több, kissé különböző változata jött létre, amelyek közül némelyiknek a használata, az előállítandó szövegek tartalmától és természetesen a megszokástól függően, kényelmesebbnek bizonyulhat, mint a többié. Tovább bonyolította a helyzetet, bár nem okozott bábeli mértékű zűrzavart, hogy egyiket-másikat újabb jelölési módokkal, ún. kiterjesztésekkel is kibővítették. Amint már említettem, én a <a href="https://pandoc.org">Pandoc’s Markdown</a>-t kedvelem, amelyet a matematikai logikával is foglalkozó <em>John MacFarlane</em> filozófiaprofesszor hozott létre 2006-ban. Ez lényegében az eredeti <em>Markdown</em> olyan továbbfejlesztett változata, amelyik a leggyakoribb kiterjesztések és “tájszólások” használatát is “érti”. De a professzor nem csak a jelölőnyelvet alkotta meg, hanem kifejlesztette a <em>pandoc</em> nevű nyílt forrású programot is, amellyel a <em>Pandoc’s Markdown</em>-ban írt szöveget más jelölőnyelvekre lehet konvertálni; több formátumpárnál az átalakítás mindkét irányban működik.</p>
+<p>Ebben az írásban ugyan csak egy rövid ízelítőt adok a lehetőségekből, ám ezekkel az ismeretekkel már bátran el lehet kezdeni a nyelv használatát, mert egyrészt, sok esetben nem is lesz szükség további elemek elsajátítására, másrészt, a <em>pandoc</em> honlapján, ahol minden nagyon részletesen dokumentálva van, a hiányzó információ megkereshető.<br />
+Az alábbiakban erősen szubjektív benyomások alapján felsorolom, hogy a <em>Pandoc’s Markdown</em> jelölőnyelvet én mikor szeretem használni:</p>
+<ul>
+<li>azon feljegyzések, leírások készítésénél, amiket ugyan nem szükséges konvertálni semmilyen más formátumba, de egy olyan jobban áttekinthető dokumentumra vágyom, amit a szövegszerkesztő a <em>Markdown</em>-ban írt szöveg szintaxis szerinti színezése révén biztosítani képes;</li>
+<li>amikor a szövegből később <em>epub</em> vagy <em>html</em> formátumú dokumentumot is elő szeretnék állítani;</li>
+<li>amikor a végleges szöveget egy olyan markdown “tájszólásban” kell produkálnom, amit nem ismerek vagy nem szeretek; ekkor majd konverzióval hozom azt létre;</li>
+</ul>
+<p>Ha azonban nem “folyó” szöveget kell előállítani, hanem azt oldalakra kell tördelni, például <em>pdf</em> állományt kell készíteni, akkor az irodai programcsomagokkal valószínűleg könnyebben boldogulhatok.<br />
+Az említett szintaxis szerinti színezés automatikusan működésbe lép, ha az írásunkat olyan fájlnéven mentjük el, ami <em>.md</em>-re végződik.</p>
+<p><em>(A fenti felsorolás csupán az én gyakorlati szükségleteimet tükrözi, ami jelentősen eltérhet a kedves olvasóétól, és ez esetben mindenképpen javaslom a Pandoc honlapjának áttekintését, mert ott nagy valószínűséggel a saját igényeinek kielégítésére vonatkozóan is talál információt. A nagyszerű LaTeX jelölőnyelv használatában gyakorlott olvasó elcsábítása nem volt célom:-)</em></p>
+<h2 id="a-pandoc-telepítése">A <em>pandoc</em> telepítése</h2>
+<p>Ahhoz, hogy a <em>Pandoc’s Markdown</em> nyelven írhassuk műveinket, nincs szükségünk magára a <em>pandoc</em> programra, azt csak akkor kell igénybe vennünk, amikor a szöveget valamilyen más formátumba szeretnénk átalakítani.<br />
+A <a href="https://pandoc.org/installing.html">program honlapján</a> több operációs rendszerhez, így a Windows-hoz és Linuxhoz is, fellelhetők a telepítő fájlok, de a programot sok Linux disztribúció már eleve tartalmazza, tehát az a csomagkezelővel felrakható, bár ekkor valószínűleg nem a legfrissebb verziót fogjuk megkapni.<br />
+A telepítés után próbáljuk ki parancssorban az alábbiakat:</p>
+<pre><code>pandoc --version
+pandoc --list-input-formats
+pandoc --list-output-formats
+pandoc --help
+man pandoc  # Linuxon</code></pre>
+<h2 id="a-leggyakrabban-használt-jelölések">A leggyakrabban használt jelölések</h2>
+<p>Amint azt az irodai szövegszerkesztők használatakor is javasolják, hogy ha a tartalmat nem szükséges valamilyen struktúrába szervezni (listába, táblázatba, stb.-be), akkor folyó szöveget írjunk, azaz ne vigyünk be sortöréseket. Így, ha konvertáljuk a dokumentumot, a tördelést az új formátum által megkívánt módon majd a <em>pandoc</em> vagy más programmal elvégeztethetjük. A folyó szövegek görgetés nélkül történő kényelmes megtekinthetőségéhez azonban állítsuk be az egyszerű szövegszerkesztőben, hogy az, a beillesztett sortörések hiányában is, a szöveget tördelve (<em>wrap</em>) jelenítse meg.<br />
+Egyébként, ha sortöréseket illesztünk egy paragrafusba, akkor például a <em>html</em> formátumba történő konvertáláskor azok nem kerülnek figyelembevételre. Többször előfordul azonban, hogy mégis szeretnénk egy mondatot a paragrafus elején kezdeni, és akkor ezt úgy tehetjük meg, hogy az előző mondatot a visszavágás jelével zárjuk <code>'\'</code>. Ebben az esetben, hogy a szerkesztőprogram is hűen tükrözze a tagolást, egy “valódi” sortörést is beszúrhatunk az <em>Enter</em> leütésével.<br />
+Két paragrafus között legalább egy üres sort kell hagyni, de ha többet hagyunk ki, akkor azok összevonásra kerülnek egyetlenbe.<br />
+Hasonlóan, ha a szavak közé egynél több szóközt írunk, azokból csak egy fog megmaradni, de a <code>'\ '</code> jelpárral egy “el nem dobható” szóközt kényszeríthetünk ki.<br />
+Lehet, hogy mindez bonyolultnak tűnik, de a gyakorlatban hamar megszokja az ember; az alábbi képpel, amelyen további jelkombinációk is találhatók, illusztráljuk az elmondottakat:</p>
+<figure>
+<img src="images/pandoc_img1.png" alt="" /><figcaption>1. kép</figcaption>
+</figure>
+<p>A fenti szöveg <em>html</em>-be történő konvertálás után így fog kinézni a böngészőben:</p>
+<figure>
+<img src="images/pandoc_img2.png" alt="" /><figcaption>2. kép</figcaption>
+</figure>
+<p>A képeken látható, hogy egy szövegrészletet nem csak egyféleképpen lehet kihangsúlyozni. Amennyiben a kiemelendő szöveg tartalmazza a <code>'*'</code>-ot, akkor használhatjuk az <code>'_'</code> jelet, vagy fordítva, de egyébként ezeket a jeleket a <code>'\'</code> jellel megfoszthatjuk a különleges funkcióiktól, amire az alábbiakban láthatunk példákat:</p>
+<figure>
+<img src="images/pandoc_img3.png" alt="" /><figcaption>3.kép: A szövegszerkesztőben</figcaption>
+</figure>
+<figure>
+<img src="images/pandoc_img4.png" alt="" /><figcaption>4.kép: Átalakítás után a böngészőben</figcaption>
+</figure>
+<p>Egyébként a <code>'\'</code> jel önmagát is megfosztja attól a különleges tulajdonságától, hogy megfoszt más jeleket a különleges tulajdonságaiktól. Próbáljuk ki a szerkesztőprogramban, amikor ő “foszt”: <code>'__\__'</code>, és amikor saját magát bírálja felül: <code>'__\\__'</code></p>
+<p>A fenti képeken a címek megadásának módja is észrevehető, a főcímet egy kettős kereszttel, az alcímeket kettővel vagy többel kell bevezetni. Az aláhúzást legalább három <code>'_'</code> jellel kell előírni.</p>
+<p>Elhelyezhetünk a szövegben alsó (<em>subscript</em>) vagy felső (<em>superscript</em>) pozíciójú részeket, amelyek jól használhatók indexek megjelenítéséhez. A kívánt részt két <code>'~'</code> illetve két <code>'^'</code> jel közé kell illeszteni, és ha szóközöket is közéjük szeretnénk tenni, akkor azokat a már korábban említett módon, a visszavágás jelével kell megadnunk: <code>'\ '</code><br />
+Például:</p>
+<figure>
+<img src="images/pandoc_img5.png" alt="" /><figcaption>5.kép</figcaption>
+</figure>
+<figure>
+<img src="images/pandoc_img6.png" alt="" /><figcaption>6.kép</figcaption>
+</figure>
+<p>Egy valamirevaló műszaki dokumentáció vagy egy szakácskönyv nem létezhet felsorolás, azaz lista nélkül. Nézzük meg az alábbi szerkezetet, amelyben több lista került egymásba ágyazásra:</p>
+<table>
+<tr>
+<td>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ss">1. </span>első főelem</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="ss">2. </span>második főelem</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="ss">   - </span>tétel</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="ss">   - </span>feltétel</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="ss">   - </span>letétel</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>     a. alfa</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>     b. béta</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>     c. gamma</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>     d. delta</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="ss">        + </span>άλφα</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="ss">        + </span>βήτα</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="ss">        + </span>γάμμα</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="ss">        + </span>δέλτα</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>          i.   1</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>          ii.  2</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>          iii. 3</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>               X.  10</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>               XI. 11</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>               XII. 12</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a><span class="ss">3. </span>harmadik főelem</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a><span class="ss">   * </span>Szevasz!</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="ss">   * </span>Helló!</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="ss">4. </span>negyedik főelem</span></code></pre></div>
+</td>
+<td>
+<figure>
+<img src="images/pandoc_img7.png" alt="" /><figcaption>7.kép: lista</figcaption>
+</figure>
+</td>
+</tr>
+</table>
+<p><em>(A bal oldalon lévő szöveget a vágólapon keresztül átmásolhatjuk a szerkesztőprogramba kipróbálásra.)</em><br />
+Figyeljük meg, hogy az alárendelt listákat bevezető karaktereknek a bennfoglaló lista első nem szóköz karakteréhez kell illeszkedniük. A felsorolásban alkalmazhatjuk az előzőekben említett jelöléseket (dőlt, subscript stb.)<br />
+A konvertálás során a lista első elemének sorszámától, illetve betűs jelölésétől kezdve automatikusan történik a következő szám vagy betű meghatározása. Próbáljuk ki, hogy az előző példában a <code>3.</code>-at átírjuk <code>10.</code>-re, az <code>ii</code>-t pedig <code>vi</code>-re!<br />
+Amennyiben két különállónak szánt listát (mindegy, hogy összetett vagy sem) közvetlenül egymás után helyezünk el, akkor közéjük nem elegendő üres sorokat beilleszteni, hanem (a <em>html</em> kódokban megjegyzések jelölésére használt) alábbi jelsorozatot is szerepeltetni kell elválasztóként, például:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="ss">1. </span>hétfő</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="ss">2. </span>kedd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">&lt;!-- --&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="ss">1. </span>Monday</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="ss">2. </span>Tuesday</span></code></pre></div>
+<p>Egy másik szerkezettel, a “block qoute”-tal, nagyon egyszerűen, de ugyanakkor igen látványosan kiemelhetünk szövegtartományokat; ezt a sorok elejére helyezett <code>'&gt;'</code> jelekkel tehetjük meg. Az alábbi képen figyeljük meg, hogy az üres sorokat is meg kellett jelölni:</p>
+<figure>
+<img src="images/pandoc_img8.png" alt="" /><figcaption>8.kép: “block qoute” a szerkesztőben</figcaption>
+</figure>
+<figure>
+<img src="images/pandoc_img9.png" alt="" /><figcaption>9.kép: “block quote” a böngészőben</figcaption>
+</figure>
+<p>Az előzőekben szó esett arról, hogy a konvertálás után az egymást követő üres sorok és szóközök egyetlen egyre redukálódnak, ami egyrészt jó, mert a figyelmetlenségből vagy a nyers változatban az áttekintés megkönnyítése végett szándékosan otthagyott “űr” automatikusan eltüntetésre kerül, másrészt, nem jó, amikor az “üresség” jelentést hordoz. Az utóbbi esetre példa a programkódok tagolása is.<br />
+Többféle szerkezettel is rábírhatjuk a konverziós eljárást arra, hogy egy adott szövegrészt egy az egyben, a megadott formában emeljen át az új dokumentumba:</p>
+<ul>
+<li><p>A “szó szerinti” (<em>verbatim</em>) jelöléssel, amivel a folyó szövegben két <code>'`'</code> (<em>backtick</em>) közé elhelyezett részt védhetjük, például: <code>`sok szóköz    **nem kövér** nem módosít\\`</code><br />
+Amennyiben a védendő szöveg <em>backtick</em>-et is tartalmaz, akkor az elejére két <em>backtick</em>-et és egy szóközt írjunk, a végére pedig ugyanezt megfordítva.<br />
+A védett szöveg a konvertálás után általában más stílusban (betűkészlettel, színnel) fog megjelenni, ezért gyakran csupán emiatt is érdemes alkalmazni.</p></li>
+<li><p>Az <em>Indented code block</em> szerkezettel: így egy többsoros szövegrészt védhetünk, ha annak minden sorát négy szóközzel vagy egy tabulátornyival beljebb kezdjük:</p>
+<figure>
+<img src="images/pandoc_img10.png" alt="" /><figcaption>10.kép: Indented code block</figcaption>
+</figure>
+<p>Amennyiben a blokkot egy listában kívánjuk kijelölni, akkor ott a behúzást a lista sorszámozását követő első nem szóköz karaktertől kell számítani.</p></li>
+<li><p>A <em>Fenced code block</em> szerkezettel: e módon ugyancsak egy többsoros szövegrészt jelölhetünk ki három vagy több egymást követő <code>'~'</code> karakternek a szöveg első sora előtti, illetve a legutolsó sora utáni megadásával; fontos, hogy a kezdő és a záró karakterek számának egyeznie kell. Itt nem szükséges behúzást alkalmazni, hacsak nem egy listán belül kívánjuk elhelyezni a blokkot. A kódhoz különböző tulajdonságokat is kapcsolhatunk, amelyekkel azt tetszetős kinézettel ruházhatjuk fel:</p></li>
+</ul>
+<p><span id="pycode1"></span></p>
+<table>
+<tr>
+<td>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>  <span class="in">~~~ {#pycode1 .python .numberLines startFrom=&quot;100&quot;}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="in">  #! /usr/bin/env python3</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="in">  import math, sys</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="in">  if len(sys.argv) == 2:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="in">      try:</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="in">          print(math.sqrt(int(sys.argv[1])))</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="in">      except:</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="in">          print(&quot;?&quot;)</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="in">  ~~~</span></span></code></pre></div>
+</td>
+<td>
+<figure>
+<img src="images/pandoc_img11.png" alt="" /><figcaption>11.kép: Fenced code block a böngészőben</figcaption>
+</figure>
+</td>
+</tr>
+</table>
+<p><em>(A bal oldalon lévő szöveget a vágólapon keresztül átmásolhatjuk a szerkesztőprogramba kipróbálásra.)</em><br />
+A kapcsos zárójeleket és az általuk közrezártakat nem kötelező használni. Most vegyük sorra a példában szereplő paramétereket:</p>
+<pre><code>- .python: E programnyelv szintaxisának megfelelő színezési előírásokat kérünk a konverzió során elhelyezni a dokumentumban. A választható nyelveket és a színező stílusokat kilistázhatjuk:
+
+        pandoc --list-highlight-languages
+        pandoc --list-highlight-style
+
+    A színező stílus kiválasztásáról a [*Markdown*-ból *html*-be](#markdown-ból-html-be) című fejezetben fogunk megismerkedni.
+
+- .numberLines: sorszámozást kérünk
+- startFrom=&quot;100&quot;: a sorszám kezdőértéke
+- #pycode1: azonosító (*id*), amelyre linkkel hivatkozhatunk a szövegből</code></pre>
+<p>A majd a böngészőben megjelenített kódot vágólapon keresztül átmásolhatjuk egy kódszerkesztő programba, miközben megőrződnek a behúzások, de nem úgy a sorszámozás, azaz nem fog nehézséget okozni.</p>
+<h2 id="attribútumok-linkek-képek">Attribútumok, linkek, képek</h2>
+<p>A <em>Fenced code block</em> ismertetésénél láttuk, hogy kapcsos zárójelek között bizonyos tulajdonságokat rendelhetünk a blokkhoz, amelyek között szerepeltethető egy <em>id</em> is. Amikor az írásunkat egy másik formátumba konvertáljuk a <em>pandoc</em> programmal, akkor, ha az új formátum támogatja (például a <em>html</em>, <em>epub</em>), a címekhez automatikusan hozzárendelődik egy azonosító. Az <em>id</em> csupa kis betűvel, a speciális karakterek elhagyásával és a szavak kötőjelekkel történő összekapcsolásával képződik; például ezen írás és e fejezet címéhez ezek rendelődnek:</p>
+<p>cím: Ecset helyett használja a <em>Pandoc’s Markdown</em>-t!<br />
+id: <code>#ecset-helyett-használja-a-pandocs-markdown-t</code></p>
+<p>cím: Attribútumok, linkek, képek<br />
+id: <code>#attribútumok-linkek-képek</code></p>
+<p>Ezek az azonosítók hivatkozási pontként (horgonyként) szolgálhatnak, ha a konvertálás kimeneti formátuma ezt a funkciót támogatja. Például, ha a dokumentumot majd <em>html</em>-é alakítjuk, akkor ilyen linkeket készíthetünk:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">[</span><span class="ot">Ugrás a doksi elejére</span><span class="co">](#ecset-helyett-használja-a-pandocs-markdown-t)</span> \</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>Na meg ott van az az izgalmas <span class="co">[</span><span class="ot">fejezet</span><span class="co">](#attribútumok-linkek-képek)</span> is.</span></code></pre></div>
+<p>Ha nem tetszenek az automatikusan előállított azonosítók, akkor megadhatunk helyettük mást, közvetlenül a címek után a már ismert kapcsos zárójelek segítségével:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="fu"># Ecset helyett használja a *Pandoc&#39;s Markdown*-t! {#doksi-eleje}</span></span></code></pre></div>
+<p>Nem csak a címekhez és a kódblokkokhoz, hanem tetszőleges szöveghez rendelhetünk azonosítót, sőt még szöveg sem kell hozzá:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>Itt ledobjuk a <span class="co">[</span><span class="ot">horgonyt</span><span class="co">]</span>{#anchor1}. \</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>[]{#anchor2} \</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>Ezekhez is készíthetünk valahol a szövegben linket. \</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>Ide töltsünk be egy jó hosszú szöveget...</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>Linkeskedünk: <span class="co">[</span><span class="ot">link1</span><span class="co">](#anchor1)</span> <span class="co">[</span><span class="ot">link2</span><span class="co">](#anchor2)</span></span></code></pre></div>
+<p><em>Html</em> vagy <em>epub</em> előállítását célozva, a kapcsos zárójelek közé <em>class</em> neveket is beírhatunk, amelyekre (a később tárgyalandó) <em>css</em> fájlban hivatkozhatunk; de akár közvetlenül stíluselemeket is felsorolhatunk:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>Ezt majd <span class="co">[</span><span class="ot">a *css* fájlban csinosítjuk</span><span class="co">]</span>{ .piros .színes } \</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>Ezt itt azonnal <span class="co">[</span><span class="ot">felcicomázzuk</span><span class="co">]</span>{ style=&quot;color: orange; padding: 5em&quot;}, bár jobb a *css* fájlt használni.</span></code></pre></div>
+<p>Mint a fenti példákon látható, nem kötelező <em>id</em>-ket megadni.<br />
+Olyan linkeket is létrehozhatunk, amelyek az interneten vagy a fájlrendszerünkben lévő objektumokra mutatnak:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>A *Pandoc&#39;s Markdown* <span class="co">[</span><span class="ot">honlapján</span><span class="co">](https://pandoc.org)</span> minden információ megtalálható. \</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>Ezt a doksit <span class="co">[</span><span class="ot">Ubuntun</span><span class="co">](Képek/Ubuntu.png)</span> írtam.</span></code></pre></div>
+<p>A példában szereplő második link egy a fájlrendszerben létező képre mutat, amelyet csak akkor jelenít meg a böngésző, ha rákattintunk. Ám megtehetjük azt is, hogy a képet “beágyazzuk”, azaz a megjelenített tartalom részévé tesszük, amihez csak egy felkiáltójelet kell a kifejezés elé illesztenünk:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>Ezt a doksit <span class="al">![Ubuntun](Képek/Ubuntu.png)</span> írtam.</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="al">![Ubuntun](Képek/Ubuntu.png)</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a>Lorem ipsum.</span></code></pre></div>
+<p>A fenti példában a szögletes zárójelben megadott szöveg képaláírásként funkcionál, de csak akkor jelenik meg, ha a kép önálló paragrafust alkot, mint a második hivatkozásnál.<br />
+Mind a képek, mind a linkek után, kapcsos zárójelek között megadhatunk tulajdonságokat.</p>
+<h2 id="konvertálás">Konvertálás</h2>
+<p>A <em>pandoc</em> program <em>UTF-8</em> kódolású fájlokkal dolgozik, így ha nem ebben készítettük a dokumentumunkat, akkor azt a konvertálás előtt át kell ebbe kódolni (amit általában az egyszerű szövegszerkesztővel is megtehetünk, vagy esetleg az <em>iconv</em> programmal), majd ha az eredményül kapott fájlra sem <em>UTF-8</em> kódolással van szükségünk, akkor azt meg vissza kell kódolni.</p>
+<p>A <em>pandoc</em> programnak a dokumentum konvertálásánál sokféle parancssori kapcsolót megadhatunk, amelyek közül a négy legfontosabb: az átalakítandó fájl neve és annak a jelölőnyelvnek a típusa, amiben íródott, illetve az új fájl neve és hogy milyen jelölőnyelven kerüljön létrehozásra. Azonban nem minden esetben van szükség az összes paraméter megadására, mert a program megpróbálja a formátumot a fájlnévből kitalálni.<br />
+A <code>pandoc --list-output-formats</code> és a <code>pandoc --list-input-formats</code> parancsok által adott listából válogathatunk.</p>
+<p>Bizonyos formátumokba történő konvertáláshoz a <em>pandoc</em>-nak további segédprogramokra lehet szüksége, amelyeket külön kell telepítenünk. Ebbe a körbe tartozik például a <em>pdf</em> formátum, amelynél a megfelelő eredmény eléréséhez több próbálkozásra-tesztelésre lehet szükség; de ebben az írásban nem kívánunk ezzel foglalkozni, a részletek a <em>pandoc</em> honlapján megtalálhatók.</p>
+<p>Az alább következő részekhez javasolt elkészíteni a korábban említett jelölések felhasználásával egy <em>Pandoc’s Markdown</em> nyelven készült fájlt, amire “doksi.md” néven fogunk a továbbiakban hivatkozni.<br />
+A fájl átalakítása a <em>GitHub-Flavored Markdown</em>-ba az alábbiak szerint lehetséges:</p>
+<pre><code>pandoc -t gfm  -o gites_doksi.md  doksi.md</code></pre>
+<p>A paraméterek magyarázata:</p>
+<ul>
+<li>-t gfm: (<em>to</em>) a megkívánt új formátum</li>
+<li>-o gites_doksi.md (<em>output</em>): az új fájl neve</li>
+<li>doksi.md: a konvertálandó fájl neve</li>
+</ul>
+<p>Az előző parancsot írhattuk volna így is:</p>
+<pre><code>pandoc -t gfm  -o gites_doksi.md  -f markdown  doksi.md</code></pre>
+<p>ahol az “f” (<em>from</em>) a konvertálandó fájlban alkalmazott jelölőnyelvet specifikálja, de a <em>pandoc</em> ezt az <em>.md</em> végződésből meg tudja állapítani.<br />
+A fentiekben az új fájl megkívánt formátuma, mivel a neve ugyancsak <em>.md</em>-re végződik, szintén tudható, de a <code>-t gfm</code> opcióval előírjuk, hogy csakis a <em>GitHub-Flavored Markdown</em> által érvényesnek tartott jelölések kerüljenek bele.<br />
+Érdemes a bemeneti fájlt az átalakítottal összehasonlítani, beolvasva azokat a szövegszerkesztővel vagy a <a href="https://meldmerge.org/"><em>meld</em> programmal</a><br />
+</p>
+<p>Hasonlóan történik egy <em>Mediawiki</em> formátumú fájl létrehozása is:</p>
+<pre><code>pandoc -t mediawiki  -o mediawiki_doksi.md  doksi.md</code></pre>
+<p>A LibreOffice program és az MS Office által kezelt <em>odt</em> illetve <em>docx</em> formátumú állományok előállítása:</p>
+<pre><code>pandoc -o doksi.odt doksi.md
+pandoc -o doksi.docx doksi.md</code></pre>
+<p>Mindkét irodai programcsomag stílusokkal dolgozik, a <em>pandoc</em> által alapértelmezetten beállítottakat így kaphatjuk meg:</p>
+<pre><code>pandoc -o mystyle.odt --print-default-data-file reference.odt
+pandoc -o mystyle.docx --print-default-data-file reference.docx</code></pre>
+<p>Létrehozva például a “mystyle.odt” fájlt, az abban lévő stílusokat a LibreOffice-ban történő módosítás (a fájl egyéb tartalma nem lesz a későbbiekben figyelembe véve) után átadhatjuk a <em>pandoc</em>-nak:</p>
+<pre><code>pandoc -o doksi.odt --reference-doc=mystyle.odt  doksi.md</code></pre>
+<p>(Megjegyzés: A <em>pdf</em> formátum előállítása tehát úgyis lehetséges, hogy előbb <em>odt</em>-be vagy <em>docx</em>-be konvertálunk, majd a megfelelő irodai csomagba beolvassuk a fájlt és exportáljuk <em>pdf</em>-be.)</p>
+<h2 id="markdown-ból-html-be-és-epub-ba"><em>Markdown</em>-ból <em>html</em>-be és <em>epub</em>-ba</h2>
+<p>Én magam legtöbbször arra használom a <em>pandoc</em>-ot, hogy <em>Pandoc’s Markdown</em>-ból <em>epub</em>-ba vagy <em>html</em>-be konvertáljak. Az előbbiek alapján könnyen kitalálható, hogy a programot miként kell elindítani a <em>html</em> esetében:</p>
+<pre><code>pandoc -o doksi.html  doksi.md</code></pre>
+<p>A “doksi.html” fájlt már meg tudjuk jeleníteni a böngészőben, de ha a szövegszerkesztőbe olvassuk be, láthatóvá válik, hogy, sok minden máson kívül, hiányzik az elejéről és a végéről a <code>&lt;html&gt;</code> illetve a <code>&lt;/html&gt;</code> jelölés. Ez azért van így, mert a <em>pandoc</em> alapesetben részfájlokat állít elő, meghagyva számunkra a lehetőséget, hogy a fájlokat más dokumentumba beilleszthessük; de utasíthatjuk arra is, hogy önálló (<em>standalone</em>) fájlt állítson elő, beletéve abba minden szükséges elemet:</p>
+<pre><code>pandoc -s -o doksi.html  --metadata title=&quot;Pandoc demo&quot;  doksi.md</code></pre>
+<p>Ha a fenti parancsban elhagyjuk a <code>--metadata title</code> paramétert, akkor a program figyelmeztet annak hiányára (<code>&lt;title&gt;</code> <em>tag</em> hiánya), de ettől függetlenül elvégzi a munkát. Ha nincs szükségünk erre címre, és nem is adunk meg semmit, akkor az üzenetet elnyomhatjuk a <code>--quiet</code> paraméter megadásával, vagy azt is megtehetjük, hogy címként egyetlen szóközt adunk meg: <code>--metadata title=" "</code></p>
+<p>Az elkészült <em>html</em> fájl valamilyen alapértelmezett stíluselemekkel kerül megjelenítésre, amelyeket felülbírálhatunk egy általunk létrehozott <em>css</em> fájl megnevezésével:</p>
+<pre><code>pandoc -s -o doksi.html --quiet  -H mystyle.css  doksi.md</code></pre>
+<p>A <em>css</em> fájlra a <a href="#függelék-css">Függelékben</a> található egy példa.<br />
+A programkódot tartalmazó kódblokkok színezéséhez, mint például a <a href="#pycode1"><em>pycode1</em></a>-hoz, különböző színezési stílusok közül választhatunk, amelyeket így tekinthetünk meg:</p>
+<pre><code>pandoc --list-highlight-style</code></pre>
+<p>A listából a <em>tango</em> stílust kiválasztva így kell indítanunk az átalakítást:</p>
+<pre><code>pandoc --highlight-style tango -s -o doksi.html --quiet  -H mystyle.css  doksi.md</code></pre>
+<p>A sok egyéb lehetőség mellett, tartalomjegyzéket is generáltathatunk a <code>--toc</code> megadásával, illetve a fejezetekhez sorszámot rendelhetünk a <code>--number-sections</code> opcióval.<br />
+A fenti esetekben mindenhol csak egyetlen bemeneti fájlt adtunk meg, de többet is fel lehet sorolni, amelyeknek az átalakított másolatai majd a megadott sorrendben összefűzésre kerülnek; ezt könnyen kipróbálhatjuk a “doksi.md” állomány kétszeri szerepeltetésével:</p>
+<pre><code>pandoc ... -H mystyle.css  doksi.md doksi.md</code></pre>
+<p>Az előzőekben elmondottak az <em>epub</em> készítésére vonatkozóan is igazak. Az alábbi, egy <em>epub</em>-ot előállító parancsban újdonság a <code>--toc-depth=3</code>, amivel megmondjuk, hogy a tartalomjegyzékbe csak azon fejezetcímek kerüljenek be, amelyek maximum három <code>#</code> jellel kezdődnek; az <code>--epub-cover-image=cover.jpg</code> a könyv címlapjának szánt képet jelzi; a <code>metadata.yaml</code> (lásd a <a href="#függelék-meta">Függelékben</a>) fájl pedig, ami elsőként szerepel az átalakítandó állományok között (és egyébként el is hagyható), az olyan adatokat tartalmazza, mint a könyv címe, az író neve, a könyv műfaja stb.; az ezután felsorolt fájlok mindegyike a könyv egy-egy fejezetét alkotja:</p>
+<pre><code>pandoc  --highlight-style tango
+        --number-sections
+        --toc-depth=3
+        -H mystyle.css
+        --epub-cover-image=cover.jpg
+        -o doksi.epub
+        metadata.yaml
+        doksi_01.md doksi_02.md ... doksi_15.md
+
+        # doksi_[0-9][0-9].md</code></pre>
+<p>Korábban láttuk, hogy ha a képeket a <code>![képfelirat](kép_fájl_neve)</code> szerkezettel illesztjük a szövegbe, akkor azokat a tartalomba ágyazottan tekinthetjük meg; ha azonban <em>epub</em> állományt készítünk, akkor abba az így hivatkozott képfájlok ténylegesen is beágyazásra kerülnek.</p>
+<p>Amennyiben a <em>html</em> vagy <em>epub</em> formátumra történő konverzión túl mást nem tervezünk, akkor akár <em>html</em> kódot is szerepeltethetünk a bemeneti fájlban, ha feltétlen szükséges.<br />
+A <code>-H</code> kapcsolót többször is alkalmazhatjuk egymásután, és akkor az így felsorolt fájlok tartalma a megadott sorrendben beírásra kerül a <em>html</em> <code>&lt;head&gt;</code> részébe, azaz nem csak <em>css</em>-t, hanem például <code>&lt;script&gt;</code> szekciót is beilleszthetünk.</p>
+<h2 id="táblázatok">Táblázatok</h2>
+<p>Az előző fejezet utolsó mondatához kapcsolódva be kell vallanom, hogy bizony én a <em>Pandoc’s Markdown</em> nyelven készült szövegben a táblázatokat <em>html</em> kóddal adom meg, mert bármelyik <em>markdown</em> verzióval is próbálkozom, mindegyik igen nehézkesnek bizonyul a táblázatok megadási módját illetően. Bár vannak erre segédprogramok meg webes szolgáltatások, a <em>html</em> kódok használata sokkal gyorsabb és szinte elhibázni sem lehet. Az alábbi példából kiviláglik, hogy a <em>html</em> kódba beilleszthetjük a már megismert szerkezeteket is:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a><span class="kw">&lt;table&gt;&lt;tr&gt;&lt;td&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="in">~~~ {#pycode1 .python .numberLines startFrom=&quot;100&quot;}</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a><span class="in">#! /usr/bin/env python3</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true"></a><span class="in">import math, sys</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true"></a><span class="in">if len(sys.argv) == 2:</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true"></a><span class="in">    try:</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true"></a><span class="in">        print(math.sqrt(int(sys.argv[1])))</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true"></a><span class="in">    except:</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true"></a><span class="in">        print(&quot;?&quot;)</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true"></a><span class="in">~~~</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true"></a><span class="kw">&lt;/td&gt;&lt;td&gt;</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true"></a><span class="al">![Ubuntu](Ubu.png)</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true"></a></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true"></a><span class="kw">&lt;/td&gt;</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true"></a><span class="kw">&lt;tr&gt;&lt;td&gt;</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true"></a></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true"></a><span class="at">&gt; Block quote \</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true"></a><span class="at">&gt; quote</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true"></a></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true"></a><span class="kw">&lt;/td&gt;&lt;td</span><span class="ot"> style=</span><span class="st">&quot;text-align:center;vertical-align:middle;&quot;</span><span class="kw">&gt;</span> **BOLDog** <span class="co">[</span><span class="ot">*Pandoc*</span><span class="co">](https://pandoc.org)</span> <span class="kw">&lt;/td&gt;</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true"></a><span class="kw">&lt;/tr&gt;</span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
+<p>És konvertálás után a böngészőben ezt látjuk:</p>
+<figure>
+<img src="images/pandoc_img12.png" alt="" /><figcaption>12. kép</figcaption>
+</figure>
+<h2 id="matematikai-kifejezések">Matematikai kifejezések</h2>
+<p>A <em>MathML</em> vagy a <em>(La)TeX</em> nyelvek segítségével matematikai kifejezéseket illeszthetünk a szövegbe. Ha a <em>TEX</em> nyelvet választottuk, akkor az azzal írt részeket a <em>pandoc</em> program, megadva neki a <code>--mathml</code> kapcsolót, átalakítja <em>MathML</em> nyelvre:</p>
+<pre><code>pandoc -s --quiet --mathml -H mystyle.css -o doksi.html  doksi.md</code></pre>
+<p>Sajnos, a <em>MathML</em> kódok megjelenítésére még nem mindegyik böngésző képes, de például a <em>Firefox</em> és a <em>Safari</em> igen. A többi böngészőt a <a href="https://www.mathjax.org/">MathJax</a> <em>JavaScript</em> nyelven írt programmal lehetséges felokosítani, ami a már említett két böngészővel is együtt tud működni, és képes kezelni mind a <em>MathML</em>, mind a <em>TeX</em> jelöléseket. Ehhez a <code>--mathjaxx</code> paraméterre van szükségünk:</p>
+<pre><code>pandoc  --highlight-style tango  -H mystyle.css  -o doksi.html
+        --mathjax=&quot;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&quot;
+        doksi.md</code></pre>
+<p>A <code>mathjax</code>-szal meghatároztuk, hogy melyik <em>MathJax</em> szkriptet kell betölteni és hogy honnan; másik szkriptet és akár lokális útvonalat is specifikálhatunk, de itt a részletekbe nem mélyedünk el, azok a <em>MathJax</em> honlapján fellelhetők. (Egyébként a példában szereplő megoldást alkalmazva, a böngészőben a matematikai kifejezésen az egér jobb gombjával történő kattintás után egy menü fog felugrani.)</p>
+<p>De nézzünk végre egy <em>TeX</em>-es kifejezést, írjuk be például ezt a “doksi.md” fájlba, majd próbáljuk ki a fenti konverziókat:</p>
+<pre><code>*LaTeX*: $\sqrt{2}\sqrt[5]{3}$</code></pre>
+<figure>
+<img src="images/pandoc_img13.png" alt="" /><figcaption>13. kép: Képlet a Firefox-ban, stílust alkalmazva</figcaption>
+</figure>
+<p>Az e-könyv-olvasókkal hasonló a helyzet, mint a böngészőkkel, nem mindegyik képes a <em>MathML</em> kódokat önállóan megjeleníteni, de például a <a href="https://calibre-ebook.com/">Calibre</a> beépített <em>E-book viewer</em>-e van olyan ügyes, mert a <em>MathJax</em> programot beleintegrálták. A <em>TeX</em> kifejezést tartalmazó fájl konvertálása tehát így történhet:</p>
+<pre><code>pandoc  --highlight-style tango  -H mystyle.css  -o doksi.epub
+        --mathml  --metadata title=&quot;Pandoc demo&quot;  doksi.md</code></pre>
+<h2 id="függelék">Függelék</h2>
+<p>A <em>css</em> fájlban szerepeltethetjük azokat az <em>id</em>-ket és <em>class</em>-okat is, amelyeket a kapcsos zárójelekben megadtunk. Egy példa a “mystyle.css” fájl egy lehetséges megvalósítására:</p>
+<div class="sourceCode" id="függelék-css"><pre class="sourceCode css"><code class="sourceCode css"><span id="függelék-css-1"><a href="#függelék-css-1" aria-hidden="true"></a>&lt;style<span class="op">&gt;</span></span>
+<span id="függelék-css-2"><a href="#függelék-css-2" aria-hidden="true"></a>h1<span class="op">,</span>h2 {</span>
+<span id="függelék-css-3"><a href="#függelék-css-3" aria-hidden="true"></a>    <span class="kw">display</span>: <span class="dv">block</span><span class="op">;</span></span>
+<span id="függelék-css-4"><a href="#függelék-css-4" aria-hidden="true"></a>    <span class="kw">color</span>: <span class="cn">#37474f</span><span class="op">;</span></span>
+<span id="függelék-css-5"><a href="#függelék-css-5" aria-hidden="true"></a>    <span class="kw">font-weight</span>: <span class="dv">bold</span><span class="op">;</span></span>
+<span id="függelék-css-6"><a href="#függelék-css-6" aria-hidden="true"></a>}</span>
+<span id="függelék-css-7"><a href="#függelék-css-7" aria-hidden="true"></a>h1 {</span>
+<span id="függelék-css-8"><a href="#függelék-css-8" aria-hidden="true"></a>    <span class="kw">font-size</span>: <span class="dv">1.8</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="függelék-css-9"><a href="#függelék-css-9" aria-hidden="true"></a>    <span class="kw">margin</span>: <span class="dv">1</span><span class="dt">em</span> <span class="dv">0</span> <span class="dv">0.2</span><span class="dt">em</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="függelék-css-10"><a href="#függelék-css-10" aria-hidden="true"></a>}</span>
+<span id="függelék-css-11"><a href="#függelék-css-11" aria-hidden="true"></a>hr {</span>
+<span id="függelék-css-12"><a href="#függelék-css-12" aria-hidden="true"></a>    <span class="kw">margin</span>: <span class="dv">0</span> <span class="dv">0</span> <span class="dv">2</span><span class="dt">em</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="függelék-css-13"><a href="#függelék-css-13" aria-hidden="true"></a>    <span class="kw">color</span>: <span class="cn">#37474f</span><span class="op">;</span> }</span>
+<span id="függelék-css-14"><a href="#függelék-css-14" aria-hidden="true"></a>h2 {</span>
+<span id="függelék-css-15"><a href="#függelék-css-15" aria-hidden="true"></a>    <span class="kw">font-size</span>: <span class="dv">1.2</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="függelék-css-16"><a href="#függelék-css-16" aria-hidden="true"></a>    <span class="kw">margin</span>: <span class="dv">1</span><span class="dt">em</span> <span class="dv">0</span> <span class="dv">0.8</span><span class="dt">em</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="függelék-css-17"><a href="#függelék-css-17" aria-hidden="true"></a>}</span>
+<span id="függelék-css-18"><a href="#függelék-css-18" aria-hidden="true"></a>blockquote {</span>
+<span id="függelék-css-19"><a href="#függelék-css-19" aria-hidden="true"></a>    <span class="kw">border-left</span>: <span class="dv">0.5</span><span class="dt">em</span> <span class="dv">solid</span> <span class="cn">#64285e</span><span class="op">;</span></span>
+<span id="függelék-css-20"><a href="#függelék-css-20" aria-hidden="true"></a>    <span class="kw">background-color</span>: <span class="cn">lightgrey</span><span class="op">;</span></span>
+<span id="függelék-css-21"><a href="#függelék-css-21" aria-hidden="true"></a>    <span class="kw">font-style</span>: <span class="dv">italic</span><span class="op">;</span></span>
+<span id="függelék-css-22"><a href="#függelék-css-22" aria-hidden="true"></a>    <span class="kw">padding-left</span>: <span class="dv">1</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="függelék-css-23"><a href="#függelék-css-23" aria-hidden="true"></a>}</span>
+<span id="függelék-css-24"><a href="#függelék-css-24" aria-hidden="true"></a>img {</span>
+<span id="függelék-css-25"><a href="#függelék-css-25" aria-hidden="true"></a>    <span class="kw">margin</span>: <span class="dv">1</span><span class="dt">em</span> <span class="bu">auto</span> <span class="dv">0.2</span><span class="dt">em</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="függelék-css-26"><a href="#függelék-css-26" aria-hidden="true"></a>    <span class="kw">display</span>: <span class="dv">block</span><span class="op">;</span></span>
+<span id="függelék-css-27"><a href="#függelék-css-27" aria-hidden="true"></a>}</span>
+<span id="függelék-css-28"><a href="#függelék-css-28" aria-hidden="true"></a>figcaption {</span>
+<span id="függelék-css-29"><a href="#függelék-css-29" aria-hidden="true"></a>    <span class="kw">text-align</span>: <span class="dv">center</span><span class="op">;</span></span>
+<span id="függelék-css-30"><a href="#függelék-css-30" aria-hidden="true"></a>    <span class="kw">font-size</span>: <span class="dv">small</span><span class="op">;</span></span>
+<span id="függelék-css-31"><a href="#függelék-css-31" aria-hidden="true"></a>    <span class="kw">font-style</span>: <span class="dv">italic</span><span class="op">;</span></span>
+<span id="függelék-css-32"><a href="#függelék-css-32" aria-hidden="true"></a>    <span class="kw">margin-bottom</span>: <span class="dv">1</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="függelék-css-33"><a href="#függelék-css-33" aria-hidden="true"></a>}</span>
+<span id="függelék-css-34"><a href="#függelék-css-34" aria-hidden="true"></a>table {</span>
+<span id="függelék-css-35"><a href="#függelék-css-35" aria-hidden="true"></a>    <span class="kw">margin</span>: <span class="dv">0</span><span class="dt">em</span> <span class="bu">auto</span> <span class="dv">2</span><span class="dt">em</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="függelék-css-36"><a href="#függelék-css-36" aria-hidden="true"></a>}</span>
+<span id="függelék-css-37"><a href="#függelék-css-37" aria-hidden="true"></a>code {</span>
+<span id="függelék-css-38"><a href="#függelék-css-38" aria-hidden="true"></a>    <span class="kw">font-size</span>: <span class="dv">1.2</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="függelék-css-39"><a href="#függelék-css-39" aria-hidden="true"></a>}</span>
+<span id="függelék-css-40"><a href="#függelék-css-40" aria-hidden="true"></a>math<span class="op">,</span> <span class="fu">.MJX-TEX</span> {</span>
+<span id="függelék-css-41"><a href="#függelék-css-41" aria-hidden="true"></a>    <span class="kw">font-weight</span>: <span class="dv">normal</span><span class="op">;</span></span>
+<span id="függelék-css-42"><a href="#függelék-css-42" aria-hidden="true"></a>    <span class="kw">font-size</span>: <span class="dv">2</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="függelék-css-43"><a href="#függelék-css-43" aria-hidden="true"></a>    <span class="kw">color</span>: <span class="cn">darkgreen</span><span class="op">;</span></span>
+<span id="függelék-css-44"><a href="#függelék-css-44" aria-hidden="true"></a>}</span>
+<span id="függelék-css-45"><a href="#függelék-css-45" aria-hidden="true"></a>&lt;/style<span class="op">&gt;</span></span></code></pre></div>
+<p>Egy <em>metadata</em> fájl:</p>
+<div class="sourceCode" id="függelék-meta"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="függelék-meta-1"><a href="#függelék-meta-1" aria-hidden="true"></a><span class="pp">---</span></span>
+<span id="függelék-meta-2"><a href="#függelék-meta-2" aria-hidden="true"></a><span class="fu">title</span><span class="kw">:</span></span>
+<span id="függelék-meta-3"><a href="#függelék-meta-3" aria-hidden="true"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> main</span></span>
+<span id="függelék-meta-4"><a href="#függelék-meta-4" aria-hidden="true"></a><span class="at">    </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Az özvegy bosszúja</span></span>
+<span id="függelék-meta-5"><a href="#függelék-meta-5" aria-hidden="true"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> subtitle</span></span>
+<span id="függelék-meta-6"><a href="#függelék-meta-6" aria-hidden="true"></a><span class="at">    </span><span class="fu">text</span><span class="kw">:</span><span class="at"> 101. cenzúrázott kiadás</span></span>
+<span id="függelék-meta-7"><a href="#függelék-meta-7" aria-hidden="true"></a><span class="fu">creator</span><span class="kw">:</span></span>
+<span id="függelék-meta-8"><a href="#függelék-meta-8" aria-hidden="true"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">role</span><span class="kw">:</span><span class="at"> author</span></span>
+<span id="függelék-meta-9"><a href="#függelék-meta-9" aria-hidden="true"></a><span class="at">    </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Riska</span></span>
+<span id="függelék-meta-10"><a href="#függelék-meta-10" aria-hidden="true"></a><span class="fu">rights</span><span class="kw">:</span><span class="at"> Minden jog fenntartva © 2021 Riska</span></span>
+<span id="függelék-meta-11"><a href="#függelék-meta-11" aria-hidden="true"></a><span class="fu">lang</span><span class="kw">:</span><span class="at"> hu</span></span>
+<span id="függelék-meta-12"><a href="#függelék-meta-12" aria-hidden="true"></a><span class="fu">type</span><span class="kw">:</span><span class="at"> FIC022030</span></span>
+<span id="függelék-meta-13"><a href="#függelék-meta-13" aria-hidden="true"></a><span class="fu">subject</span><span class="kw">:</span><span class="at"> krimi, thriller</span></span>
+<span id="függelék-meta-14"><a href="#függelék-meta-14" aria-hidden="true"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> Könnyed kikapcsolódást nyújtó ponyvaregény</span></span>
+<span id="függelék-meta-15"><a href="#függelék-meta-15" aria-hidden="true"></a><span class="co">...</span></span></code></pre></div>
+<p>Vigyázat, a <em>yaml</em> formátumú fájl érzékeny az indentálásra, a sorok hosszára és még egyebekre is; mindenképpen tájékozódjunk a képzését illetően!</p>
+</body>
+</html>

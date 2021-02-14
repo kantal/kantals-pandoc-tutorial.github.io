@@ -1,0 +1,45 @@
+<style>
+h1,h2 {
+    display: block;
+    color: #37474f;
+    font-weight: bold;
+}
+h1 {
+    font-size: 1.8em;
+    margin: 1em 0 0.2em 0;
+}
+hr {
+    margin: 0 0 2em 0;
+    color: #37474f; }
+h2 {
+    font-size: 1.2em;
+    margin: 1em 0 0.8em 0;
+}
+blockquote {
+    border-left: 0.5em solid #64285e;
+    background-color: lightgrey;
+    font-style: italic;
+    padding-left: 1em;
+}
+img {
+    margin: 1em auto 0.2em auto;
+    display: block;
+}
+figcaption {
+    text-align: center;
+    font-size: small;
+    font-style: italic;
+    margin-bottom: 1em;
+}
+table {
+    margin: 0em auto 2em auto;
+}
+code {
+    font-size: 1.2em;
+}
+math, .MJX-TEX {
+    font-weight: bold;
+    font-size: 2em;
+    color: darkgreen;
+}
+</style>
