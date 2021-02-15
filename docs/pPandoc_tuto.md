@@ -1,4 +1,4 @@
-~*Koós Antal, 2021. február 14., v1.0, https://eutlantis.k2os.hu/szoftver*~
+~*Koós Antal, 2021. február 15., v1.0.1, https://eutlantis.k2os.hu/szoftver*~
 
 # Ecset helyett használja a *Pandoc's Markdown*-t!
 ___
@@ -341,7 +341,7 @@ A `-H` kapcsolót többször is alkalmazhatjuk egymásután, és akkor az így f
 
 ## Táblázatok
 
-Az előző fejezet utolsó mondatához kapcsolódva be kell vallanom, hogy bizony én a *Pandoc's Markdown* nyelven készült szövegben a táblázatokat *html* kóddal adom meg, mert
+Az előző fejezet végéhez kapcsolódva be kell vallanom, hogy bizony én a *Pandoc's Markdown* nyelven készült szövegben a táblázatokat *html* kóddal adom meg, mert
 bármelyik *markdown* verzióval is próbálkozom, mindegyik igen nehézkesnek bizonyul a táblázatok megadási módját illetően. Bár vannak erre segédprogramok meg webes szolgáltatások, a *html* kódok használata sokkal gyorsabb és szinte elhibázni sem lehet. Az alábbi példából kiviláglik, hogy a *html* kódba beilleszthetjük a már megismert szerkezeteket is:
 
 
@@ -405,6 +405,7 @@ Az e-könyv-olvasókkal hasonló a helyzet, mint a böngészőkkel, nem mindegyi
 
 ## Függelék
 
+### Stílus fájlok
 
 A *css* fájlban szerepeltethetjük azokat az *id*-ket és *class*-okat is, amelyeket a kapcsos zárójelekben megadtunk. Egy példa a "mystyle.css" fájl egy lehetséges megvalósítására:
 
@@ -456,7 +457,9 @@ math, .MJX-TEX {
 </style>
 ~~~
 
-Egy *metadata* fájl:
+### Metaadatok
+
+A metaadatokat többféleképpen is átadhatjuk a *pandoc*-nak, az alábbiakban ezt egy *yaml* formátumú fájl segítségével tesszük meg:
 
 ~~~{#függelék-meta .yaml}
 ---
@@ -476,4 +479,4 @@ description: Könnyed kikapcsolódást nyújtó ponyvaregény
 ...
 ~~~
 
-Vigyázat, a *yaml* formátumú fájl érzékeny az indentálásra, a sorok hosszára és még egyebekre is; mindenképpen tájékozódjunk a képzését illetően!
+A fenti szövegben a `---` és `...` az adatok kezdetét és a végét jelöli. Vigyázat, a *yaml* formátumú fájl érzékeny az indentálásra, a sorok hosszára és még egyebekre is; mindenképpen tájékozódjunk a képzését illetően!

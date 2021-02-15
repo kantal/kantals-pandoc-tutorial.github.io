@@ -71,21 +71,25 @@
     code span.wa { color: #008000; font-weight: bold; } /* Warning */
   </style>
   <style>
-  h1,h2 {
+  h1,h2,h3 {
       display: block;
       color: #37474f;
       font-weight: bold;
   }
   h1 {
       font-size: 1.8em;
-      margin: 1em 0 0.2em 0;
+      margin: 2em 0 0.2em 0;
   }
   hr {
       margin: 0 0 2em 0;
       color: #37474f; }
   h2 {
       font-size: 1.2em;
-      margin: 1em 0 0.8em 0;
+      margin: 2em 0 0.8em 0;
+  }
+  h3 {
+      font-size: 1em;
+      margin: 2em 0 0.8em 0;
   }
   blockquote {
       border-left: 0.5em solid #64285e;
@@ -129,11 +133,15 @@
 <li><a href="#markdown-ból-html-be-és-epub-ba"><em>Markdown</em>-ból <em>html</em>-be és <em>epub</em>-ba</a></li>
 <li><a href="#táblázatok">Táblázatok</a></li>
 <li><a href="#matematikai-kifejezések">Matematikai kifejezések</a></li>
-<li><a href="#függelék">Függelék</a></li>
+<li><a href="#függelék">Függelék</a>
+<ul>
+<li><a href="#stílus-fájlok">Stílus fájlok</a></li>
+<li><a href="#metaadatok">Metaadatok</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
-<p><sub><em>Koós Antal, 2021. február 14., v1.0, https://eutlantis.k2os.hu/szoftver</em></sub></p>
+<p><sub><em>Koós Antal, 2021. február 15., v1.0.1, https://eutlantis.k2os.hu/szoftver</em></sub></p>
 <h1 id="ecset-helyett-használja-a-pandocs-markdown-t">Ecset helyett használja a <em>Pandoc’s Markdown</em>-t!</h1>
 <hr />
 <h2 id="bevezetés">Bevezetés</h2>
@@ -386,7 +394,7 @@ A fenti esetekben mindenhol csak egyetlen bemeneti fájlt adtunk meg, de többet
 <p>Amennyiben a <em>html</em> vagy <em>epub</em> formátumra történő konverzión túl mást nem tervezünk, akkor akár <em>html</em> kódot is szerepeltethetünk a bemeneti fájlban, ha feltétlen szükséges.<br />
 A <code>-H</code> kapcsolót többször is alkalmazhatjuk egymásután, és akkor az így felsorolt fájlok tartalma a megadott sorrendben beírásra kerül a <em>html</em> <code>&lt;head&gt;</code> részébe, azaz nem csak <em>css</em>-t, hanem például <code>&lt;script&gt;</code> szekciót is beilleszthetünk.</p>
 <h2 id="táblázatok">Táblázatok</h2>
-<p>Az előző fejezet utolsó mondatához kapcsolódva be kell vallanom, hogy bizony én a <em>Pandoc’s Markdown</em> nyelven készült szövegben a táblázatokat <em>html</em> kóddal adom meg, mert bármelyik <em>markdown</em> verzióval is próbálkozom, mindegyik igen nehézkesnek bizonyul a táblázatok megadási módját illetően. Bár vannak erre segédprogramok meg webes szolgáltatások, a <em>html</em> kódok használata sokkal gyorsabb és szinte elhibázni sem lehet. Az alábbi példából kiviláglik, hogy a <em>html</em> kódba beilleszthetjük a már megismert szerkezeteket is:</p>
+<p>Az előző fejezet végéhez kapcsolódva be kell vallanom, hogy bizony én a <em>Pandoc’s Markdown</em> nyelven készült szövegben a táblázatokat <em>html</em> kóddal adom meg, mert bármelyik <em>markdown</em> verzióval is próbálkozom, mindegyik igen nehézkesnek bizonyul a táblázatok megadási módját illetően. Bár vannak erre segédprogramok meg webes szolgáltatások, a <em>html</em> kódok használata sokkal gyorsabb és szinte elhibázni sem lehet. Az alábbi példából kiviláglik, hogy a <em>html</em> kódba beilleszthetjük a már megismert szerkezeteket is:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a><span class="kw">&lt;table&gt;&lt;tr&gt;&lt;td&gt;</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="in">~~~ {#pycode1 .python .numberLines startFrom=&quot;100&quot;}</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a><span class="in">#! /usr/bin/env python3</span></span>
@@ -432,6 +440,7 @@ A <code>-H</code> kapcsolót többször is alkalmazhatjuk egymásután, és akko
 <pre><code>pandoc  --highlight-style tango  -H mystyle.css  -o doksi.epub
         --mathml  --metadata title=&quot;Pandoc demo&quot;  doksi.md</code></pre>
 <h2 id="függelék">Függelék</h2>
+<h3 id="stílus-fájlok">Stílus fájlok</h3>
 <p>A <em>css</em> fájlban szerepeltethetjük azokat az <em>id</em>-ket és <em>class</em>-okat is, amelyeket a kapcsos zárójelekben megadtunk. Egy példa a “mystyle.css” fájl egy lehetséges megvalósítására:</p>
 <div class="sourceCode" id="függelék-css"><pre class="sourceCode css"><code class="sourceCode css"><span id="függelék-css-1"><a href="#függelék-css-1" aria-hidden="true"></a>&lt;style<span class="op">&gt;</span></span>
 <span id="függelék-css-2"><a href="#függelék-css-2" aria-hidden="true"></a>h1<span class="op">,</span>h2 {</span>
@@ -478,7 +487,8 @@ A <code>-H</code> kapcsolót többször is alkalmazhatjuk egymásután, és akko
 <span id="függelék-css-43"><a href="#függelék-css-43" aria-hidden="true"></a>    <span class="kw">color</span>: <span class="cn">darkgreen</span><span class="op">;</span></span>
 <span id="függelék-css-44"><a href="#függelék-css-44" aria-hidden="true"></a>}</span>
 <span id="függelék-css-45"><a href="#függelék-css-45" aria-hidden="true"></a>&lt;/style<span class="op">&gt;</span></span></code></pre></div>
-<p>Egy <em>metadata</em> fájl:</p>
+<h3 id="metaadatok">Metaadatok</h3>
+<p>A metaadatokat többféleképpen is átadhatjuk a <em>pandoc</em>-nak, az alábbiakban ezt egy <em>yaml</em> formátumú fájl segítségével tesszük meg:</p>
 <div class="sourceCode" id="függelék-meta"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="függelék-meta-1"><a href="#függelék-meta-1" aria-hidden="true"></a><span class="pp">---</span></span>
 <span id="függelék-meta-2"><a href="#függelék-meta-2" aria-hidden="true"></a><span class="fu">title</span><span class="kw">:</span></span>
 <span id="függelék-meta-3"><a href="#függelék-meta-3" aria-hidden="true"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> main</span></span>
@@ -494,6 +504,6 @@ A <code>-H</code> kapcsolót többször is alkalmazhatjuk egymásután, és akko
 <span id="függelék-meta-13"><a href="#függelék-meta-13" aria-hidden="true"></a><span class="fu">subject</span><span class="kw">:</span><span class="at"> krimi, thriller</span></span>
 <span id="függelék-meta-14"><a href="#függelék-meta-14" aria-hidden="true"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> Könnyed kikapcsolódást nyújtó ponyvaregény</span></span>
 <span id="függelék-meta-15"><a href="#függelék-meta-15" aria-hidden="true"></a><span class="co">...</span></span></code></pre></div>
-<p>Vigyázat, a <em>yaml</em> formátumú fájl érzékeny az indentálásra, a sorok hosszára és még egyebekre is; mindenképpen tájékozódjunk a képzését illetően!</p>
+<p>A fenti szövegben a <code>---</code> és <code>...</code> az adatok kezdetét és a végét jelöli. Vigyázat, a <em>yaml</em> formátumú fájl érzékeny az indentálásra, a sorok hosszára és még egyebekre is; mindenképpen tájékozódjunk a képzését illetően!</p>
 </body>
 </html>
