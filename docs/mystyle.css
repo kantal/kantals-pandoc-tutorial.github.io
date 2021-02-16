@@ -1,4 +1,10 @@
 <style>
+body {
+    max-width: 1075px;
+    margin: auto;
+    font-family: sans-serif;
+    padding: 1em;
+}
 h1,h2,h3 {
     display: block;
     color: #37474f;

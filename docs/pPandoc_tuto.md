@@ -1,4 +1,4 @@
-~*Koós Antal, 2021. február 15., v1.0.1, https://eutlantis.k2os.hu/szoftver*~
+~*Koós Antal, 2021. február 15., v1.0.2, https://eutlantis.k2os.hu/szoftver*~
 
 # Ecset helyett használja a *Pandoc's Markdown*-t!
 ___
@@ -141,7 +141,7 @@ Többféle szerkezettel is rábírhatjuk a konverziós eljárást arra, hogy egy
 
 - A *Fenced code block* szerkezettel: e módon ugyancsak egy többsoros szövegrészt jelölhetünk ki három vagy több egymást követő `'~'` karakternek a szöveg első sora előtti, illetve a legutolsó sora utáni megadásával; fontos, hogy a kezdő és a záró karakterek számának egyeznie kell. Itt nem szükséges behúzást alkalmazni, hacsak nem egy listán belül kívánjuk elhelyezni a blokkot. A kódhoz különböző tulajdonságokat is kapcsolhatunk, amelyekkel azt tetszetős kinézettel ruházhatjuk fel:
 
-[]{#pycode1}
+  []{#pycode1}
 
   <table><tr><td>
   ~~~~{ .markdown}
@@ -165,16 +165,16 @@ Többféle szerkezettel is rábírhatjuk a konverziós eljárást arra, hogy egy
   *(A bal oldalon lévő szöveget a vágólapon keresztül átmásolhatjuk a szerkesztőprogramba kipróbálásra.)* \
   A kapcsos zárójeleket és az általuk közrezártakat nem kötelező használni. Most vegyük sorra a példában szereplő paramétereket:
 
-    - .python: E programnyelv szintaxisának megfelelő színezési előírásokat kérünk a konverzió során elhelyezni a dokumentumban. A választható nyelveket és a színező stílusokat kilistázhatjuk:
+  - .python: E programnyelv szintaxisának megfelelő színezési előírásokat kérünk a konverzió során elhelyezni a dokumentumban. A választható nyelveket és a színező stílusokat kilistázhatjuk:
 
-            pandoc --list-highlight-languages
-            pandoc --list-highlight-style
+        pandoc --list-highlight-languages
+        pandoc --list-highlight-style
 
-        A színező stílus kiválasztásáról a [*Markdown*-ból *html*-be](#markdown-ból-html-be) című fejezetben fogunk megismerkedni.
+    A színező stílus kiválasztásáról a [*Markdown*-ból *html*-be](#markdown-ból-html-be) című fejezetben fogunk megismerkedni.
 
-    - .numberLines: sorszámozást kérünk
-    - startFrom="100": a sorszám kezdőértéke
-    - #pycode1: azonosító (*id*), amelyre linkkel hivatkozhatunk a szövegből
+  - .numberLines: sorszámozást kérünk
+  - startFrom="100": a sorszám kezdőértéke
+  - #pycode1: azonosító (*id*), amelyre linkkel hivatkozhatunk a szövegből
 
   A majd a böngészőben megjelenített kódot vágólapon keresztül átmásolhatjuk egy kódszerkesztő programba, miközben megőrződnek a behúzások, de nem úgy a sorszámozás, azaz nem fog nehézséget okozni.
 
@@ -367,7 +367,8 @@ if len(sys.argv) == 2:
 > Block quote \
 > quote
 
-</td><td style="text-align:center;vertical-align:middle;"> **BOLDog** [*Pandoc*](https://pandoc.org) </td>
+</td><td style="text-align:center;vertical-align:middle;">
+   **BOLDog** [*Pandoc*](https://pandoc.org) </td>
 </tr>
 </table>
 ~~~~

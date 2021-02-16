@@ -71,6 +71,12 @@
     code span.wa { color: #008000; font-weight: bold; } /* Warning */
   </style>
   <style>
+  body {
+      max-width: 1075px;
+      margin: auto;
+      font-family: sans-serif;
+      padding: 1em;
+  }
   h1,h2,h3 {
       display: block;
       color: #37474f;
@@ -141,7 +147,7 @@
 </ul></li>
 </ul>
 </nav>
-<p><sub><em>Koós Antal, 2021. február 15., v1.0.1, https://eutlantis.k2os.hu/szoftver</em></sub></p>
+<p><sub><em>Koós Antal, 2021. február 15., v1.0.2, https://eutlantis.k2os.hu/szoftver</em></sub></p>
 <h1 id="ecset-helyett-használja-a-pandocs-markdown-t">Ecset helyett használja a <em>Pandoc’s Markdown</em>-t!</h1>
 <hr />
 <h2 id="bevezetés">Bevezetés</h2>
@@ -262,22 +268,21 @@ A védett szöveg a konvertálás után általában más stílusban (betűkészl
 <img src="images/pandoc_img10.png" alt="" /><figcaption>10.kép: Indented code block</figcaption>
 </figure>
 <p>Amennyiben a blokkot egy listában kívánjuk kijelölni, akkor ott a behúzást a lista sorszámozását követő első nem szóköz karaktertől kell számítani.</p></li>
-<li><p>A <em>Fenced code block</em> szerkezettel: e módon ugyancsak egy többsoros szövegrészt jelölhetünk ki három vagy több egymást követő <code>'~'</code> karakternek a szöveg első sora előtti, illetve a legutolsó sora utáni megadásával; fontos, hogy a kezdő és a záró karakterek számának egyeznie kell. Itt nem szükséges behúzást alkalmazni, hacsak nem egy listán belül kívánjuk elhelyezni a blokkot. A kódhoz különböző tulajdonságokat is kapcsolhatunk, amelyekkel azt tetszetős kinézettel ruházhatjuk fel:</p></li>
-</ul>
+<li><p>A <em>Fenced code block</em> szerkezettel: e módon ugyancsak egy többsoros szövegrészt jelölhetünk ki három vagy több egymást követő <code>'~'</code> karakternek a szöveg első sora előtti, illetve a legutolsó sora utáni megadásával; fontos, hogy a kezdő és a záró karakterek számának egyeznie kell. Itt nem szükséges behúzást alkalmazni, hacsak nem egy listán belül kívánjuk elhelyezni a blokkot. A kódhoz különböző tulajdonságokat is kapcsolhatunk, amelyekkel azt tetszetős kinézettel ruházhatjuk fel:</p>
 <p><span id="pycode1"></span></p>
 <table>
 <tr>
 <td>
-<div class="sourceCode" id="cb4"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>  <span class="in">~~~ {#pycode1 .python .numberLines startFrom=&quot;100&quot;}</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="in">  #! /usr/bin/env python3</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="in">  import math, sys</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="in">~~~ {#pycode1 .python .numberLines startFrom=&quot;100&quot;}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="in">#! /usr/bin/env python3</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="in">import math, sys</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="in">  if len(sys.argv) == 2:</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="in">      try:</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="in">          print(math.sqrt(int(sys.argv[1])))</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="in">      except:</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="in">          print(&quot;?&quot;)</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="in">  ~~~</span></span></code></pre></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="in">if len(sys.argv) == 2:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="in">    try:</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="in">        print(math.sqrt(int(sys.argv[1])))</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="in">    except:</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="in">        print(&quot;?&quot;)</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="in">~~~</span></span></code></pre></div>
 </td>
 <td>
 <figure>
@@ -288,17 +293,17 @@ A védett szöveg a konvertálás után általában más stílusban (betűkészl
 </table>
 <p><em>(A bal oldalon lévő szöveget a vágólapon keresztül átmásolhatjuk a szerkesztőprogramba kipróbálásra.)</em><br />
 A kapcsos zárójeleket és az általuk közrezártakat nem kötelező használni. Most vegyük sorra a példában szereplő paramétereket:</p>
-<pre><code>- .python: E programnyelv szintaxisának megfelelő színezési előírásokat kérünk a konverzió során elhelyezni a dokumentumban. A választható nyelveket és a színező stílusokat kilistázhatjuk:
-
-        pandoc --list-highlight-languages
-        pandoc --list-highlight-style
-
-    A színező stílus kiválasztásáról a [*Markdown*-ból *html*-be](#markdown-ból-html-be) című fejezetben fogunk megismerkedni.
-
-- .numberLines: sorszámozást kérünk
-- startFrom=&quot;100&quot;: a sorszám kezdőértéke
-- #pycode1: azonosító (*id*), amelyre linkkel hivatkozhatunk a szövegből</code></pre>
-<p>A majd a böngészőben megjelenített kódot vágólapon keresztül átmásolhatjuk egy kódszerkesztő programba, miközben megőrződnek a behúzások, de nem úgy a sorszámozás, azaz nem fog nehézséget okozni.</p>
+<ul>
+<li><p>.python: E programnyelv szintaxisának megfelelő színezési előírásokat kérünk a konverzió során elhelyezni a dokumentumban. A választható nyelveket és a színező stílusokat kilistázhatjuk:</p>
+<pre><code>pandoc --list-highlight-languages
+pandoc --list-highlight-style</code></pre>
+<p>A színező stílus kiválasztásáról a <a href="#markdown-ból-html-be"><em>Markdown</em>-ból <em>html</em>-be</a> című fejezetben fogunk megismerkedni.</p></li>
+<li><p>.numberLines: sorszámozást kérünk</p></li>
+<li><p>startFrom=“100”: a sorszám kezdőértéke</p></li>
+<li><p>#pycode1: azonosító (<em>id</em>), amelyre linkkel hivatkozhatunk a szövegből</p></li>
+</ul>
+<p>A majd a böngészőben megjelenített kódot vágólapon keresztül átmásolhatjuk egy kódszerkesztő programba, miközben megőrződnek a behúzások, de nem úgy a sorszámozás, azaz nem fog nehézséget okozni.</p></li>
+</ul>
 <h2 id="attribútumok-linkek-képek">Attribútumok, linkek, képek</h2>
 <p>A <em>Fenced code block</em> ismertetésénél láttuk, hogy kapcsos zárójelek között bizonyos tulajdonságokat rendelhetünk a blokkhoz, amelyek között szerepeltethető egy <em>id</em> is. Amikor az írásunkat egy másik formátumba konvertáljuk a <em>pandoc</em> programmal, akkor, ha az új formátum támogatja (például a <em>html</em>, <em>epub</em>), a címekhez automatikusan hozzárendelődik egy azonosító. Az <em>id</em> csupa kis betűvel, a speciális karakterek elhagyásával és a szavak kötőjelekkel történő összekapcsolásával képződik; például ezen írás és e fejezet címéhez ezek rendelődnek:</p>
 <p>cím: Ecset helyett használja a <em>Pandoc’s Markdown</em>-t!<br />
@@ -416,9 +421,10 @@ A <code>-H</code> kapcsolót többször is alkalmazhatjuk egymásután, és akko
 <span id="cb25-19"><a href="#cb25-19" aria-hidden="true"></a><span class="at">&gt; Block quote \</span></span>
 <span id="cb25-20"><a href="#cb25-20" aria-hidden="true"></a><span class="at">&gt; quote</span></span>
 <span id="cb25-21"><a href="#cb25-21" aria-hidden="true"></a></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true"></a><span class="kw">&lt;/td&gt;&lt;td</span><span class="ot"> style=</span><span class="st">&quot;text-align:center;vertical-align:middle;&quot;</span><span class="kw">&gt;</span> **BOLDog** <span class="co">[</span><span class="ot">*Pandoc*</span><span class="co">](https://pandoc.org)</span> <span class="kw">&lt;/td&gt;</span></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true"></a><span class="kw">&lt;/tr&gt;</span></span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true"></a><span class="kw">&lt;/td&gt;&lt;td</span><span class="ot"> style=</span><span class="st">&quot;text-align:center;vertical-align:middle;&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true"></a>   **BOLDog** <span class="co">[</span><span class="ot">*Pandoc*</span><span class="co">](https://pandoc.org)</span> <span class="kw">&lt;/td&gt;</span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true"></a><span class="kw">&lt;/tr&gt;</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
 <p>És konvertálás után a böngészőben ezt látjuk:</p>
 <figure>
 <img src="images/pandoc_img12.png" alt="" /><figcaption>12. kép</figcaption>
