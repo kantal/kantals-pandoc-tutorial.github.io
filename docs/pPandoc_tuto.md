@@ -1,15 +1,15 @@
-~*Koós Antal, 2021. február 15., v1.0.2, https://eutlantis.k2os.hu/szoftver*~
+~*Koós Antal, 2021. február 16., v1.0.3, https://eutlantis.k2os.hu/szoftver*~
 
 # Ecset helyett használja a *Pandoc's Markdown*-t!
 ___
 
 ## Bevezetés
 
-Amióta a legutolsó könyvemet teljes egészében a *Pandoc's Markdown* nyelven írtam, rászoktam hogy minden írásomat (mint például ezt), de még az apró-cseprő feljegyzéseimet is ezzel a jelölőnyelvvel (*markup language*) rögzítem. Sokféle jelölőnyelv létezik, például ilyenek a *html, xml, svg, LaTeX*, amelyek közül talán a legelső a legismertebb, mivel az internet böngészésekor elsősorban ilyen formátumú dokumentumokkal találkozunk. Ha a böngészőben megnézzük egy oldal forrását (*View page source*), akkor rémisztő dolgokkal szembesülünk; még ha el is tekintünk a beillesztett programkódoktól (*JavaScript*), akkor is ott marad egy nagy csomó ún. címke (*tag*), mint például a `<h1>, <div>, <p>, <span>, <img>, <a>, <code>, <td>, <ul>, <li>`, és amelyek még olyan további jellemzőkkel is bírhatnak, mint például `class, id, alt, src, href, title`. Szerintem csak kevesen vannak azok, akik, nem földi halandók lévén, műveiket (könyvet, szakdolgozatot) képesek ily módon, közvetlenül *html*-ben rögzíteni, mert a lényegi mondanivalóhoz nem tartozó formai elemek láttán megbicsaklik a gondolat. \
+Amióta a legutolsó könyvemet teljes egészében a *Pandoc's Markdown* nyelven írtam, rászoktam hogy minden írásomat (mint például ezt), de még az apró-cseprő feljegyzéseimet is ezzel a jelölőnyelvvel (*markup language*) rögzítem. Sokféle jelölőnyelv létezik, például ilyenek a *HTML, XML, SVG, LaTeX*, amelyek közül talán a legelső a legismertebb, mivel az internet böngészésekor elsősorban ilyen formátumú dokumentumokkal találkozunk. Ha a böngészőben megnézzük egy oldal forrását (*View page source*), akkor rémisztő dolgokkal szembesülünk; még ha el is tekintünk a beillesztett programkódoktól (*JavaScript*), akkor is ott marad egy nagy csomó ún. címke (*tag*), mint például a `<h1>, <div>, <p>, <span>, <img>, <a>, <code>, <td>, <ul>, <li>`, és amelyek még olyan további jellemzőkkel is bírhatnak, mint például `class, id, alt, src, href, title`. Szerintem csak kevesen vannak azok, akik, nem földi halandók lévén, műveiket (könyvet, szakdolgozatot) képesek ily módon, közvetlenül *HTML*-ben rögzíteni, mert a lényegi mondanivalóhoz nem tartozó formai elemek láttán megbicsaklik a gondolat. \
 Természetesen e helyett választhatjuk valamelyik irodai programcsomagot (LibreOffice, MS Office), hiszen rendkívül sok funkcióval rendelkeznek, és az általuk készített dokumentumot számtalan más formátumba exportálhatjuk, de egyrészt, sokunknak még az ikonokra kattintgatás vagy a stíluselemeknek gyorsító billentyűkkel történő kiválasztása is bosszantóan körülményesnek bizonyul (persze megfelelő stíluslapok és szerkesztési technika alkalmazásával ezen sokat lehet javítani), másrészt, nem mindig tudunk teljes kontrollt gyakorolni a dokumentum szerkezetét illetően (ami persze nem is mindig szükséges). \
 Jó lenne, ha a két véglet között lenne valamilyen köztes eljárás.
 
-Hasonló gondolatok foglalkoztathatták *John Gruber*-t és *Aaron Swartz*-ot, amikor 2004-ben megalkották a *Markdown* jelölőnyelvet, amelynek segítségével egy egyszerű szövegszerkesztőben (*plain text editor*, például: Kate, Gedit, Geany, Notepad++, vim), amilyeneket rendszerint programkódok írására is használunk, bizonyos jelek és jelcsoportok megfelelő elhelyezésével formázási utasításokat helyezhetünk el a szövegben, amelyből azután egy konvertáló programmal *html* vagy más formátumú fájlt állíthatunk elő. Miért jobb ez, mint közvetlenül *html* címkéket és az ahhoz tartozó tulajdonságokat beilleszteni a szövegbe? A lényeg a megvalósítás részleteiben rejlik: a jelölésmód úgy került kialakításra, hogy azt alkalmazva a szöveg nem válik "olvashatatlanul" feldarabolttá, és ráadásul a jelek beszúrása is csak minimális plusz munkával jár. A szerkesztőprogramban ugyan nem látjuk a formázott szöveget "élő valójában", de egyrészt egy konvertáló programmal hipp-hopp előállíthatjuk a *html* kódot, aminek a megjelenítését egy böngészőben azonnal ellenőrizhetjük, másrészt, ezek az "egyszerű" szerkesztőprogramok már nem is olyan egyszerűek, hiszen mindenféle programnyelvhez, amibe a jelölőnyelvek is beleértendők, szintaxis szerinti színezést tudnak rendelni, ami által a *Markdown*-ban írt szövegünk jól áttekinthetővé válik, sőt olvashatóbb lesz a jelölőnyelvet nem használónál.
+Hasonló gondolatok foglalkoztathatták *John Gruber*-t és *Aaron Swartz*-ot, amikor 2004-ben megalkották a *Markdown* jelölőnyelvet, amelynek segítségével egy egyszerű szövegszerkesztőben (*plain text editor*, például: Kate, Gedit, Geany, Notepad++, vim), amilyeneket rendszerint programkódok írására is használunk, bizonyos jelek és jelcsoportok megfelelő elhelyezésével formázási utasításokat helyezhetünk el a szövegben, amelyből azután egy konvertáló programmal *HTML* vagy más formátumú fájlt állíthatunk elő. Miért jobb ez, mint közvetlenül *HTML* címkéket és az ahhoz tartozó tulajdonságokat beilleszteni a szövegbe? A lényeg a megvalósítás részleteiben rejlik: a jelölésmód úgy került kialakításra, hogy azt alkalmazva a szöveg nem válik "olvashatatlanul" feldarabolttá, és ráadásul a jelek beszúrása is csak minimális plusz munkával jár. A szerkesztőprogramban ugyan nem látjuk a formázott szöveget "élő valójában", de egyrészt egy konvertáló programmal hipp-hopp előállíthatjuk a *HTML* kódot, aminek a megjelenítését egy böngészőben azonnal ellenőrizhetjük, másrészt, ezek az "egyszerű" szerkesztőprogramok már nem is olyan egyszerűek, hiszen mindenféle programnyelvhez, amibe a jelölőnyelvek is beleértendők, szintaxis szerinti színezést tudnak rendelni, ami által a *Markdown*-ban írt szövegünk jól áttekinthetővé válik, sőt olvashatóbb lesz a jelölőnyelvet nem használónál.
 
 A *Markdown* jelölőnyelvnek a későbbiekben több, kissé különböző változata jött létre, amelyek közül némelyiknek a használata, az előállítandó szövegek tartalmától és természetesen a megszokástól függően, kényelmesebbnek bizonyulhat, mint a többié. Tovább bonyolította a helyzetet, bár nem okozott bábeli mértékű zűrzavart, hogy egyiket-másikat újabb jelölési módokkal, ún. kiterjesztésekkel is kibővítették. Amint már említettem, én a [Pandoc's Markdown](https://pandoc.org)-t kedvelem, amelyet a matematikai logikával is foglalkozó *John MacFarlane* filozófiaprofesszor hozott létre 2006-ban. Ez lényegében az eredeti *Markdown* olyan továbbfejlesztett változata, amelyik a leggyakoribb kiterjesztések és "tájszólások" használatát is "érti". De a professzor nem csak a jelölőnyelvet alkotta meg, hanem kifejlesztette a *pandoc* nevű nyílt forrású programot is, amellyel a *Pandoc's Markdown*-ban írt szöveget más jelölőnyelvekre lehet konvertálni; több formátumpárnál az átalakítás mindkét irányban működik.
 
@@ -17,10 +17,10 @@ Ebben az írásban ugyan csak egy rövid ízelítőt adok a lehetőségekből, �
 Az alábbiakban erősen szubjektív benyomások alapján felsorolom, hogy a *Pandoc's Markdown* jelölőnyelvet én mikor szeretem használni:
 
 - azon feljegyzések, leírások készítésénél, amiket ugyan nem szükséges konvertálni semmilyen más formátumba, de egy olyan jobban áttekinthető dokumentumra vágyom, amit a  szövegszerkesztő a *Markdown*-ban írt szöveg szintaxis szerinti színezése révén biztosítani képes;
-- amikor a szövegből később *epub* vagy *html* formátumú dokumentumot is elő szeretnék állítani;
+- amikor a szövegből később *EPUB* vagy *HTML* formátumú dokumentumot is elő szeretnék állítani;
 - amikor a végleges szöveget egy olyan markdown "tájszólásban" kell produkálnom, amit nem ismerek vagy nem szeretek; ekkor majd konverzióval hozom azt létre;
 
-Ha azonban nem "folyó" szöveget kell előállítani, hanem azt oldalakra kell tördelni, például *pdf* állományt kell készíteni, akkor az irodai programcsomagokkal valószínűleg könnyebben boldogulhatok. \
+Ha azonban nem "folyó" szöveget kell előállítani, hanem azt oldalakra kell tördelni, például *PDF* állományt kell készíteni, akkor az irodai programcsomagokkal valószínűleg könnyebben boldogulhatok. \
 Az említett szintaxis szerinti színezés automatikusan működésbe lép, ha az írásunkat olyan fájlnéven mentjük el, ami *.md*-re végződik.
 
 *(A fenti felsorolás csupán az én gyakorlati szükségleteimet tükrözi, ami jelentősen eltérhet a kedves olvasóétól, és ez esetben mindenképpen javaslom a Pandoc honlapjának áttekintését, mert ott nagy valószínűséggel a saját igényeinek kielégítésére vonatkozóan is talál információt. A nagyszerű LaTeX jelölőnyelv használatában gyakorlott olvasó elcsábítása nem volt célom:-)*
@@ -42,14 +42,14 @@ A telepítés után próbáljuk ki parancssorban az alábbiakat:
 ## A leggyakrabban használt jelölések
 
 Amint azt az irodai szövegszerkesztők használatakor is javasolják, hogy ha a tartalmat nem szükséges valamilyen struktúrába szervezni (listába, táblázatba, stb.-be), akkor folyó szöveget írjunk, azaz ne vigyünk be sortöréseket. Így, ha konvertáljuk a dokumentumot, a tördelést az új formátum által megkívánt módon majd a *pandoc* vagy más programmal elvégeztethetjük. A folyó szövegek görgetés nélkül történő kényelmes megtekinthetőségéhez azonban állítsuk be az egyszerű szövegszerkesztőben, hogy az, a beillesztett sortörések hiányában is, a szöveget tördelve (*wrap*) jelenítse meg. \
-Egyébként, ha sortöréseket illesztünk egy paragrafusba, akkor például a *html* formátumba történő konvertáláskor azok nem kerülnek figyelembevételre. Többször előfordul azonban, hogy mégis szeretnénk egy mondatot a paragrafus elején kezdeni, és akkor ezt úgy tehetjük meg, hogy az előző mondatot a visszavágás jelével zárjuk `'\'`. Ebben az esetben, hogy a szerkesztőprogram is hűen tükrözze a tagolást, egy "valódi" sortörést is beszúrhatunk az *Enter* leütésével. \
+Egyébként, ha sortöréseket illesztünk egy paragrafusba, akkor például a *HTML* formátumba történő konvertáláskor azok nem kerülnek figyelembevételre. Többször előfordul azonban, hogy mégis szeretnénk egy mondatot a paragrafus elején kezdeni, és akkor ezt úgy tehetjük meg, hogy az előző mondatot a visszavágás jelével zárjuk `'\'`. Ebben az esetben, hogy a szerkesztőprogram is hűen tükrözze a tagolást, egy "valódi" sortörést is beszúrhatunk az *Enter* leütésével. \
 Két paragrafus között legalább egy üres sort kell hagyni, de ha többet hagyunk ki, akkor azok összevonásra kerülnek egyetlenbe. \
 Hasonlóan, ha a szavak közé egynél több szóközt írunk, azokból csak egy fog megmaradni, de a `'\ '` jelpárral egy "el nem dobható" szóközt kényszeríthetünk ki. \
 Lehet, hogy mindez bonyolultnak tűnik, de a gyakorlatban hamar megszokja az ember; az alábbi képpel, amelyen további jelkombinációk is találhatók, illusztráljuk az elmondottakat:
 
 ![1. kép](images/pandoc_img1.png)
 
-A fenti szöveg *html*-be történő konvertálás után így fog kinézni a böngészőben:
+A fenti szöveg *HTML*-be történő konvertálás után így fog kinézni a böngészőben:
 
 ![2. kép](images/pandoc_img2.png)
 
@@ -108,7 +108,7 @@ Egy valamirevaló műszaki dokumentáció vagy egy szakácskönyv nem létezhet 
 *(A bal oldalon lévő szöveget a vágólapon keresztül átmásolhatjuk a szerkesztőprogramba kipróbálásra.)* \
 Figyeljük meg, hogy az alárendelt listákat bevezető karaktereknek a bennfoglaló lista első nem szóköz karakteréhez kell illeszkedniük. A felsorolásban alkalmazhatjuk az előzőekben említett jelöléseket (dőlt, subscript stb.) \
 A konvertálás során a lista első elemének sorszámától, illetve betűs jelölésétől kezdve automatikusan történik a következő szám vagy betű meghatározása. Próbáljuk ki, hogy az előző példában a `3.`-at átírjuk `10.`-re, az `ii`-t pedig `vi`-re! \
-Amennyiben két különállónak szánt listát (mindegy, hogy összetett vagy sem) közvetlenül egymás után helyezünk el, akkor közéjük nem elegendő üres sorokat beilleszteni, hanem (a *html* kódokban megjegyzések jelölésére használt) alábbi jelsorozatot is szerepeltetni kell elválasztóként, például:
+Amennyiben két különállónak szánt listát (mindegy, hogy összetett vagy sem) közvetlenül egymás után helyezünk el, akkor közéjük nem elegendő üres sorokat beilleszteni, hanem (a *HTML* kódokban megjegyzések jelölésére használt) alábbi jelsorozatot is szerepeltetni kell elválasztóként, például:
 
 ~~~{ .markdown}
 1. hétfő
@@ -170,7 +170,7 @@ Többféle szerkezettel is rábírhatjuk a konverziós eljárást arra, hogy egy
         pandoc --list-highlight-languages
         pandoc --list-highlight-style
 
-    A színező stílus kiválasztásáról a [*Markdown*-ból *html*-be](#markdown-ból-html-be) című fejezetben fogunk megismerkedni.
+    A színező stílus kiválasztásáról a [*Markdown*-ból *HTML*-be és *EPUB*-ba](#markdown-ból-html-be-és-epub-ba) című fejezetben fogunk megismerkedni.
 
   - .numberLines: sorszámozást kérünk
   - startFrom="100": a sorszám kezdőértéke
@@ -181,7 +181,7 @@ Többféle szerkezettel is rábírhatjuk a konverziós eljárást arra, hogy egy
 
 ## Attribútumok, linkek, képek
 
-A *Fenced code block* ismertetésénél láttuk, hogy kapcsos zárójelek között bizonyos tulajdonságokat rendelhetünk a blokkhoz, amelyek között szerepeltethető egy *id* is. Amikor az írásunkat egy másik formátumba konvertáljuk a *pandoc* programmal, akkor, ha az új formátum támogatja (például a *html*, *epub*), a címekhez automatikusan hozzárendelődik egy azonosító. Az *id* csupa kis betűvel, a speciális karakterek elhagyásával és a szavak kötőjelekkel történő összekapcsolásával képződik; például ezen írás és e fejezet címéhez ezek rendelődnek:
+A *Fenced code block* ismertetésénél láttuk, hogy kapcsos zárójelek között bizonyos tulajdonságokat rendelhetünk a blokkhoz, amelyek között szerepeltethető egy *id* is. Amikor az írásunkat egy másik formátumba konvertáljuk a *pandoc* programmal, akkor, ha az új formátum támogatja (például a *HTML*, *EPUB*), a címekhez automatikusan hozzárendelődik egy azonosító. Az *id* csupa kis betűvel, a speciális karakterek elhagyásával és a szavak kötőjelekkel történő összekapcsolásával képződik; például ezen írás és e fejezet címéhez ezek rendelődnek:
 
 cím: Ecset helyett használja a *Pandoc's Markdown*-t! \
 id: `#ecset-helyett-használja-a-pandocs-markdown-t`
@@ -189,7 +189,7 @@ id: `#ecset-helyett-használja-a-pandocs-markdown-t`
 cím: Attribútumok, linkek, képek \
 id: `#attribútumok-linkek-képek`
 
-Ezek az azonosítók hivatkozási pontként (horgonyként) szolgálhatnak, ha a konvertálás kimeneti formátuma ezt a funkciót támogatja. Például, ha a dokumentumot majd *html*-é alakítjuk, akkor ilyen linkeket készíthetünk:
+Ezek az azonosítók hivatkozási pontként (horgonyként) szolgálhatnak, ha a konvertálás kimeneti formátuma ezt a funkciót támogatja. Például, ha a dokumentumot majd *HTML*-é alakítjuk, akkor ilyen linkeket készíthetünk:
 
 ~~~ {.markdown}
 [Ugrás a doksi elejére](#ecset-helyett-használja-a-pandocs-markdown-t) \
@@ -213,7 +213,7 @@ Ide töltsünk be egy jó hosszú szöveget...
 Linkeskedünk: [link1](#anchor1) [link2](#anchor2)
 ~~~
 
-*Html* vagy *epub* előállítását célozva, a kapcsos zárójelek közé *class* neveket is beírhatunk, amelyekre (a később tárgyalandó) *css* fájlban hivatkozhatunk; de akár  közvetlenül stíluselemeket is felsorolhatunk:
+*Html* vagy *EPUB* előállítását célozva, a kapcsos zárójelek közé *class* neveket is beírhatunk, amelyekre (a később tárgyalandó) *CSS* fájlban hivatkozhatunk; de akár  közvetlenül stíluselemeket is felsorolhatunk:
 
 ~~~ {.markdown}
 Ezt majd [a *css* fájlban csinosítjuk]{ .piros .színes } \
@@ -248,7 +248,7 @@ A *pandoc* program *UTF-8* kódolású fájlokkal dolgozik, így ha nem ebben k�
 A *pandoc* programnak a dokumentum konvertálásánál sokféle parancssori kapcsolót megadhatunk, amelyek közül a négy legfontosabb: az átalakítandó fájl neve és annak a  jelölőnyelvnek a típusa, amiben íródott, illetve az új fájl neve és hogy milyen jelölőnyelven kerüljön létrehozásra. Azonban nem minden esetben van szükség az összes paraméter megadására, mert a program megpróbálja a formátumot a fájlnévből kitalálni. \
 A `pandoc --list-output-formats` és a `pandoc --list-input-formats` parancsok által adott listából válogathatunk.
 
-Bizonyos formátumokba történő konvertáláshoz a *pandoc*-nak további segédprogramokra lehet szüksége, amelyeket külön kell telepítenünk. Ebbe a körbe tartozik például a *pdf* formátum, amelynél a megfelelő eredmény eléréséhez több próbálkozásra-tesztelésre lehet szükség; de ebben az írásban nem kívánunk ezzel foglalkozni, a részletek a *pandoc* honlapján megtalálhatók.
+Bizonyos formátumokba történő konvertáláshoz a *pandoc*-nak további segédprogramokra lehet szüksége, amelyeket külön kell telepítenünk. Ebbe a körbe tartozik például a *PDF* formátum, amelynél a megfelelő eredmény eléréséhez több próbálkozásra-tesztelésre lehet szükség; de ebben az írásban nem kívánunk ezzel foglalkozni, a részletek a *pandoc* honlapján megtalálhatók.
 
 Az alább következő részekhez javasolt elkészíteni a korábban említett jelölések felhasználásával egy *Pandoc's Markdown* nyelven készült fájlt, amire "doksi.md" néven fogunk a továbbiakban hivatkozni. \
 A fájl átalakítása a *GitHub-Flavored Markdown*-ba az alábbiak szerint lehetséges:
@@ -287,25 +287,25 @@ Létrehozva például a "mystyle.odt" fájlt, az abban lévő stílusokat a Libr
 
     pandoc -o doksi.odt --reference-doc=mystyle.odt  doksi.md
 
-(Megjegyzés: A *pdf* formátum előállítása tehát úgyis lehetséges, hogy előbb *odt*-be vagy *docx*-be konvertálunk, majd a megfelelő irodai csomagba beolvassuk a fájlt és   exportáljuk *pdf*-be.)
+(Megjegyzés: A *PDF* formátum előállítása tehát úgyis lehetséges, hogy előbb *odt*-be vagy *docx*-be konvertálunk, majd a megfelelő irodai csomagba beolvassuk a fájlt és   innen exportáljuk *PDF*-be.)
 
-## *Markdown*-ból *html*-be és *epub*-ba
+## *Markdown*-ból *HTML*-be és *EPUB*-ba
 
-Én magam legtöbbször arra használom a *pandoc*-ot, hogy *Pandoc's Markdown*-ból *epub*-ba vagy *html*-be konvertáljak. Az előbbiek alapján könnyen kitalálható, hogy a programot miként kell elindítani a *html* esetében:
+Én magam legtöbbször arra használom a *pandoc*-ot, hogy *Pandoc's Markdown*-ból *EPUB*-ba vagy *HTML*-be konvertáljak. Az előbbiek alapján könnyen kitalálható, hogy a programot miként kell elindítani a *HTML* esetében:
 
     pandoc -o doksi.html  doksi.md
 
-A "doksi.html" fájlt már meg tudjuk jeleníteni a böngészőben, de ha a szövegszerkesztőbe olvassuk be, láthatóvá válik, hogy, sok minden máson kívül, hiányzik az elejéről és a végéről a `<html>` illetve a `</html>` jelölés. Ez azért van így, mert a *pandoc* alapesetben részfájlokat állít elő, meghagyva számunkra a lehetőséget, hogy a fájlokat más dokumentumba beilleszthessük; de utasíthatjuk arra is, hogy önálló (*standalone*) fájlt állítson elő, beletéve abba minden szükséges elemet:
+A "doksi.HTML" fájlt már meg tudjuk jeleníteni a böngészőben, de ha a szövegszerkesztőbe olvassuk be, láthatóvá válik, hogy, sok minden máson kívül, hiányzik az elejéről és a végéről a `<html>` illetve a `</html>` jelölés. Ez azért van így, mert a *pandoc* alapesetben részfájlokat állít elő, meghagyva számunkra a lehetőséget, hogy a fájlokat más dokumentumba beilleszthessük; de utasíthatjuk arra is, hogy önálló (*standalone*) fájlt állítson elő, beletéve abba minden szükséges elemet:
 
     pandoc -s -o doksi.html  --metadata title="Pandoc demo"  doksi.md
 
 Ha a fenti parancsban elhagyjuk a `--metadata title` paramétert, akkor a program figyelmeztet annak hiányára (`<title>` *tag* hiánya), de ettől függetlenül elvégzi a munkát. Ha nincs szükségünk erre címre, és nem is adunk meg semmit, akkor az üzenetet elnyomhatjuk a `--quiet` paraméter megadásával, vagy azt is megtehetjük, hogy címként egyetlen szóközt adunk meg: `--metadata title=" "`
 
-Az elkészült *html* fájl valamilyen alapértelmezett stíluselemekkel kerül megjelenítésre, amelyeket felülbírálhatunk egy általunk létrehozott *css* fájl megnevezésével:
+Az elkészült *HTML* fájl valamilyen alapértelmezett stíluselemekkel kerül megjelenítésre, amelyeket felülbírálhatunk egy általunk létrehozott *CSS* fájl megnevezésével:
 
     pandoc -s -o doksi.html --quiet  -H mystyle.css  doksi.md
 
-A *css* fájlra a [Függelékben](#függelék-css) található egy példa. \
+A *CSS* fájlra a [Függelékben](#függelék-css) található egy példa. \
 A programkódot tartalmazó kódblokkok színezéséhez, mint például a [*pycode1*](#pycode1)-hoz, különböző színezési stílusok közül választhatunk, amelyeket így tekinthetünk meg:
 
     pandoc --list-highlight-style
@@ -320,7 +320,7 @@ A fenti esetekben mindenhol csak egyetlen bemeneti fájlt adtunk meg, de többet
     pandoc ... -H mystyle.css  doksi.md doksi.md
 
 
-Az előzőekben elmondottak az *epub* készítésére vonatkozóan is igazak. Az alábbi, egy *epub*-ot előállító parancsban újdonság a `--toc-depth=3`, amivel megmondjuk, hogy a tartalomjegyzékbe csak azon fejezetcímek kerüljenek be, amelyek maximum három `#` jellel kezdődnek; az `--epub-cover-image=cover.jpg` a könyv címlapjának szánt képet jelzi; a `metadata.yaml` (lásd a  [Függelékben](#függelék-meta)) fájl pedig, ami elsőként szerepel az átalakítandó állományok között (és egyébként el is hagyható), az olyan adatokat tartalmazza, mint a könyv címe, az író neve, a könyv műfaja stb.; az ezután felsorolt fájlok mindegyike a könyv egy-egy fejezetét alkotja:
+Az előzőekben elmondottak az *EPUB* készítésére vonatkozóan is igazak. Az alábbi, egy *EPUB*-ot előállító parancsban újdonság a `--toc-depth=3`, amivel megmondjuk, hogy a tartalomjegyzékbe csak azon fejezetcímek kerüljenek be, amelyek maximum három `#` jellel kezdődnek; az `--epub-cover-image=cover.jpg` a könyv címlapjának szánt képet jelzi; a `metadata.yaml` (lásd a  [Függelékben](#függelék-meta)) fájl pedig, ami elsőként szerepel az átalakítandó állományok között (és egyébként el is hagyható), az olyan adatokat tartalmazza, mint a könyv címe, az író neve, a könyv műfaja stb.; az ezután felsorolt fájlok mindegyike a könyv egy-egy fejezetét alkotja:
 
     pandoc  --highlight-style tango
             --number-sections
@@ -334,15 +334,15 @@ Az előzőekben elmondottak az *epub* készítésére vonatkozóan is igazak. Az
             # doksi_[0-9][0-9].md
 
 
-Korábban láttuk, hogy ha a képeket a `![képfelirat](kép_fájl_neve)` szerkezettel illesztjük a szövegbe, akkor azokat a tartalomba ágyazottan tekinthetjük meg; ha azonban *epub* állományt készítünk, akkor abba az így hivatkozott képfájlok ténylegesen is beágyazásra kerülnek.
+Korábban láttuk, hogy ha a képeket a `![képfelirat](kép_fájl_neve)` szerkezettel illesztjük a szövegbe, akkor azokat a tartalomba ágyazottan tekinthetjük meg; ha azonban *EPUB* állományt készítünk, akkor abba az így hivatkozott képfájlok ténylegesen is beágyazásra kerülnek.
 
-Amennyiben a *html* vagy *epub* formátumra történő konverzión túl mást nem tervezünk, akkor akár  *html* kódot is szerepeltethetünk a bemeneti fájlban, ha feltétlen szükséges. \
-A `-H` kapcsolót többször is alkalmazhatjuk egymásután, és akkor az így felsorolt fájlok tartalma a megadott sorrendben beírásra kerül a *html* `<head>` részébe, azaz nem csak *css*-t, hanem például `<script>` szekciót is beilleszthetünk.
+Amennyiben a *HTML* vagy *EPUB* formátumra történő konverzión túl mást nem tervezünk, akkor akár  *HTML* kódot is szerepeltethetünk a bemeneti fájlban, ha feltétlen szükséges. \
+A `-H` kapcsolót többször is alkalmazhatjuk egymásután, és akkor az így felsorolt fájlok tartalma a megadott sorrendben beírásra kerül a *HTML* `<head>` részébe, azaz nem csak *CSS*-t, hanem például `<script>` szekciót is beilleszthetünk.
 
 ## Táblázatok
 
-Az előző fejezet végéhez kapcsolódva be kell vallanom, hogy bizony én a *Pandoc's Markdown* nyelven készült szövegben a táblázatokat *html* kóddal adom meg, mert
-bármelyik *markdown* verzióval is próbálkozom, mindegyik igen nehézkesnek bizonyul a táblázatok megadási módját illetően. Bár vannak erre segédprogramok meg webes szolgáltatások, a *html* kódok használata sokkal gyorsabb és szinte elhibázni sem lehet. Az alábbi példából kiviláglik, hogy a *html* kódba beilleszthetjük a már megismert szerkezeteket is:
+Az előző fejezet végéhez kapcsolódva be kell vallanom, hogy bizony én a *Pandoc's Markdown* nyelven készült szövegben a táblázatokat *HTML* kóddal adom meg, mert
+bármelyik *markdown* verzióval is próbálkozom, mindegyik igen nehézkesnek bizonyul a táblázatok megadási módját illetően. Bár vannak erre segédprogramok meg webes szolgáltatások, a *HTML* kódok használata sokkal gyorsabb és szinte elhibázni sem lehet. Az alábbi példából kiviláglik, hogy a *HTML* kódba beilleszthetjük a már megismert szerkezeteket is:
 
 
 ~~~~ {.markdown}
@@ -408,7 +408,7 @@ Az e-könyv-olvasókkal hasonló a helyzet, mint a böngészőkkel, nem mindegyi
 
 ### Stílus fájlok
 
-A *css* fájlban szerepeltethetjük azokat az *id*-ket és *class*-okat is, amelyeket a kapcsos zárójelekben megadtunk. Egy példa a "mystyle.css" fájl egy lehetséges megvalósítására:
+A *CSS* fájlban szerepeltethetjük azokat az *id*-ket és *class*-okat is, amelyeket a kapcsos zárójelekben megadtunk. Egy példa a "mystyle.css" fájl egy lehetséges megvalósítására:
 
 ~~~ {#függelék-css .css}
 <style>
@@ -460,7 +460,7 @@ math, .MJX-TEX {
 
 ### Metaadatok
 
-A metaadatokat többféleképpen is átadhatjuk a *pandoc*-nak, az alábbiakban ezt egy *yaml* formátumú fájl segítségével tesszük meg:
+A metaadatokat többféleképpen is átadhatjuk a *pandoc*-nak, az alábbiakban ezt egy *YAML* formátumú fájl segítségével tesszük meg:
 
 ~~~{#függelék-meta .yaml}
 ---
@@ -480,4 +480,4 @@ description: Könnyed kikapcsolódást nyújtó ponyvaregény
 ...
 ~~~
 
-A fenti szövegben a `---` és `...` az adatok kezdetét és a végét jelöli. Vigyázat, a *yaml* formátumú fájl érzékeny az indentálásra, a sorok hosszára és még egyebekre is; mindenképpen tájékozódjunk a képzését illetően!
+A fenti szövegben a `---` és `...` az adatok kezdetét és a végét jelöli. Vigyázat, a *YAML* formátumú fájl érzékeny az indentálásra, a sorok hosszára és még egyebekre is; mindenképpen tájékozódjunk a képzését illetően!
