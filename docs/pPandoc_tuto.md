@@ -412,21 +412,31 @@ A *CSS* fájlban szerepeltethetjük azokat az *id*-ket és *class*-okat is, amel
 
 ~~~ {#függelék-css .css}
 <style>
-h1,h2 {
+body {
+    max-width: 1075px;
+    margin: auto;
+    font-family: sans-serif;
+    padding: 1em;
+}
+h1,h2,h3 {
     display: block;
     color: #37474f;
     font-weight: bold;
 }
 h1 {
     font-size: 1.8em;
-    margin: 1em 0 0.2em 0;
+    margin: 2em 0 0.2em 0;
 }
 hr {
     margin: 0 0 2em 0;
     color: #37474f; }
 h2 {
     font-size: 1.2em;
-    margin: 1em 0 0.8em 0;
+    margin: 2em 0 0.8em 0;
+}
+h3 {
+    font-size: 1em;
+    margin: 2em 0 0.8em 0;
 }
 blockquote {
     border-left: 0.5em solid #64285e;
@@ -451,7 +461,7 @@ code {
     font-size: 1.2em;
 }
 math, .MJX-TEX {
-    font-weight: normal;
+    font-weight: bold;
     font-size: 2em;
     color: darkgreen;
 }
