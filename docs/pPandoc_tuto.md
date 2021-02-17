@@ -1,4 +1,4 @@
-~*Koós Antal, 2021. február 16., v1.0.3, https://eutlantis.k2os.hu/szoftver*~
+~*Koós Antal, 2021. február 17., v1.0.4, https://eutlantis.k2os.hu/szoftver*~
 
 # Ecset helyett használja a *Pandoc's Markdown*-t!
 ___
